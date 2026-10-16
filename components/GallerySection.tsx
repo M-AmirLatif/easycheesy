@@ -10,6 +10,33 @@ export function GallerySection() {
 
   const galleryItems = IMAGES.gallery;
 
+  // Lock background scroll and handle keyboard navigation when lightbox is open
+  React.useEffect(() => {
+    if (activeImageIndex === null) return;
+
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveImageIndex(null);
+      } else if (e.key === "ArrowLeft") {
+        setActiveImageIndex((prev) =>
+          prev === null || prev === 0 ? galleryItems.length - 1 : prev - 1
+        );
+      } else if (e.key === "ArrowRight") {
+        setActiveImageIndex((prev) =>
+          prev === null || prev === galleryItems.length - 1 ? 0 : prev + 1
+        );
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeImageIndex, galleryItems.length]);
+
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (activeImageIndex === null) return;

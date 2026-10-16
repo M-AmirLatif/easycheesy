@@ -26,17 +26,24 @@ export function CartDrawer() {
     checkoutViaWhatsApp,
   } = useCart();
 
-  // Prevent background scrolling when cart drawer is open
+  // Prevent background scrolling and allow Escape to close when cart drawer is open
   useEffect(() => {
-    if (isCartOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!isCartOpen) return;
+
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsCartOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isCartOpen]);
+  }, [isCartOpen, setIsCartOpen]);
 
   if (!isCartOpen) return null;
 
@@ -54,7 +61,7 @@ export function CartDrawer() {
       />
 
       {/* Slide-over panel */}
-      <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="absolute inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
         <div className="w-screen max-w-md bg-[#121212] border-l border-neutral-800 shadow-2xl flex flex-col justify-between">
           {/* Header */}
           <div className="p-5 border-b border-neutral-800 flex items-center justify-between bg-neutral-900/80">
