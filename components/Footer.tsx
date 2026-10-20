@@ -8,11 +8,10 @@ import {
   MapPin,
   Phone,
   Clock,
-  Flame,
   Instagram,
   Facebook,
-  Share2,
   Heart,
+  MessageCircle,
 } from "lucide-react";
 
 export function Footer() {
@@ -27,136 +26,162 @@ export function Footer() {
             <Link href="#hero" className="inline-flex items-center gap-3.5 mb-4 group">
               <BrandLogo variant="badge" size="sm" />
               <div className="flex flex-col">
-                <span className="font-display font-black text-2xl uppercase tracking-wider text-white group-hover:text-brand-yellow transition-colors leading-none">
-                  SHAWARMA <span className="text-brand-yellow">LINE</span>
+                <span className="font-display font-black text-2xl uppercase tracking-wider text-white group-hover:text-amber-400 transition-colors leading-none">
+                  EASY <span className="text-orange-500">CHEESY</span>
                 </span>
-                <span className="font-script text-brand-orange text-sm leading-tight mt-1">
-                  All Taste Behind Me
+                <span className="text-amber-300 text-xs font-bold uppercase tracking-wider mt-1">
+                  Love at First Bite
                 </span>
-                <span className="text-[11px] text-neutral-400 mt-1 uppercase tracking-wider font-semibold">
-                  College Road, Kasur
+                <span className="text-[11px] text-neutral-400 mt-0.5 uppercase tracking-wider font-semibold">
+                  Shahbaz Khan Road, Kasur
                 </span>
               </div>
             </Link>
             <p className="text-sm text-neutral-400 max-w-sm mb-6 leading-relaxed">
-              Kasur&apos;s celebrated late-night fast-food destination.
-              Live charcoal shawarmas, crispy zinger burgers, and gourmet stuffed crust pizzas.
-              &ldquo;All Taste Behind Me.&rdquo;
+              Kasur&apos;s celebrated family dining and late-night fast-food destination.
+              Ultimate double smash burgers, cheesy crown crust pizzas, flavor-injected crispy broast,
+              and club sandwiches. &ldquo;Serving Moments, Not Just Meals.&rdquo;
             </p>
 
-            {/* Social Icons Placeholders */}
+            {/* Social Icons */}
             <div className="flex items-center gap-3">
               <a
-                href="https://facebook.com"
+                href={RESTAURANT_INFO.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-neutral-900 hover:bg-brand-orange hover:text-white border border-neutral-800 transition-colors flex items-center justify-center text-neutral-300"
-                aria-label="Facebook Page"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-neutral-900 hover:bg-brand-orange hover:text-white border border-neutral-800 transition-colors flex items-center justify-center text-neutral-300"
+                className="w-10 h-10 rounded-xl bg-neutral-900 hover:bg-gradient-to-tr hover:from-amber-500 hover:to-orange-500 hover:text-black border border-neutral-800 transition-colors flex items-center justify-center text-neutral-300"
                 aria-label="Instagram Profile"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href={`https://wa.me/${RESTAURANT_INFO.whatsAppNumber}`}
+                href={`https://wa.me/${RESTAURANT_INFO.whatsAppNumber}?text=${encodeURIComponent(
+                  "Salam Easy Cheesy! I would like to place an order."
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-neutral-900 hover:bg-emerald-600 hover:text-white border border-neutral-800 transition-colors flex items-center justify-center text-neutral-300"
-                aria-label="WhatsApp Channel"
+                aria-label="WhatsApp Chat"
               >
-                <Share2 className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links (3 cols) */}
+          {/* Quick links (3 cols) */}
           <div className="lg:col-span-3">
-            <h4 className="text-white font-display uppercase tracking-wider text-lg mb-4">
-              Quick Links
+            <h4 className="font-display font-black text-white text-base uppercase tracking-wider mb-4">
+              Explore Our Menu
             </h4>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <a href="#menu" className="hover:text-brand-yellow transition-colors">
-                  Full Food Menu
-                </a>
+                <Link
+                  href="#menu"
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  Smash Burgers &amp; Beef Patties
+                </Link>
               </li>
               <li>
-                <a href="#signature" className="hover:text-brand-yellow transition-colors">
-                  Signature Grill Picks
-                </a>
+                <Link
+                  href="#menu"
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  Artisan Crown &amp; Cheese Crust Pizzas
+                </Link>
               </li>
               <li>
-                <a href="#deals" className="hover:text-brand-yellow transition-colors">
-                  Value Combo Deals
-                </a>
+                <Link
+                  href="#menu"
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  Injected Crispy Broast &amp; Combos
+                </Link>
               </li>
               <li>
-                <a href="#why-us" className="hover:text-brand-yellow transition-colors">
-                  Why Shawarma Line
-                </a>
+                <Link
+                  href="#menu"
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  Toasted Club Sandwiches &amp; Paninis
+                </Link>
               </li>
               <li>
-                <a href="#gallery" className="hover:text-brand-yellow transition-colors">
-                  Behind the Grill Gallery
-                </a>
+                <Link
+                  href="#menu"
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  Chinese Gravies, Soups &amp; Chowmein
+                </Link>
               </li>
               <li>
-                <a href="#reviews" className="hover:text-brand-yellow transition-colors">
-                  Customer Testimonials
-                </a>
-              </li>
-              <li>
-                <a href="#visit" className="hover:text-brand-yellow transition-colors">
-                  Location &amp; Timings
-                </a>
+                <Link
+                  href="#deals"
+                  className="hover:text-amber-400 transition-colors font-bold text-amber-300"
+                >
+                  Exclusive Duo Deals (From Rs 999)
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact & Hours Info (4 cols) */}
+          {/* Contact info (4 cols) */}
           <div className="lg:col-span-4">
-            <h4 className="text-white font-display uppercase tracking-wider text-lg mb-4">
-              Contact &amp; Hours
+            <h4 className="font-display font-black text-white text-base uppercase tracking-wider mb-4">
+              Visit &amp; Contact
             </h4>
-            <div className="space-y-3 text-sm">
+            <div className="space-y-3.5 text-xs sm:text-sm">
               <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-brand-orange mt-1 flex-shrink-0" />
-                <span>{RESTAURANT_INFO.address}</span>
+                <MapPin className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                <span className="leading-relaxed">
+                  {RESTAURANT_INFO.address}
+                </span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-brand-yellow flex-shrink-0" />
-                <span>{RESTAURANT_INFO.phonePrimary} / {RESTAURANT_INFO.phoneSecondary}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Clock className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <Clock className="w-4 h-4 text-orange-400 flex-shrink-0" />
                 <span>{RESTAURANT_INFO.hoursDisplay}</span>
               </div>
-              <div className="pt-2 text-xs text-neutral-400">
-                <span>Payment: Cash on Delivery &amp; Counter Cash Only.</span>
+              <div className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <div className="flex gap-2 font-bold text-white">
+                  <a
+                    href={`tel:${RESTAURANT_INFO.phonePrimaryRaw}`}
+                    className="hover:text-amber-400 transition-colors"
+                  >
+                    {RESTAURANT_INFO.phonePrimary}
+                  </a>
+                  <span>/</span>
+                  <a
+                    href={`tel:${RESTAURANT_INFO.phoneSecondaryRaw}`}
+                    className="hover:text-amber-400 transition-colors"
+                  >
+                    {RESTAURANT_INFO.phoneSecondary}
+                  </a>
+                </div>
               </div>
+            </div>
+
+            <div className="mt-5 p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs">
+              <span className="text-amber-300 font-bold block mb-0.5">
+                Kids Play Zone Available Upstairs!
+              </span>
+              <span className="text-neutral-400">
+                Spacious inflatable play area for your kids while you dine comfortably.
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Bottom Credits & Legal */}
+        {/* Bottom copyright row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
           <p>
-            &copy; {currentYear} Shawarma Line Kasur. All rights reserved.
+            &copy; {currentYear} {RESTAURANT_INFO.name}. All rights reserved. Kasur, Pakistan.
           </p>
-          <div className="flex items-center gap-2">
-            <span>Agency Grade Pitch Demo</span>
-            <span>•</span>
-            <span className="text-neutral-400 flex items-center gap-1">
-              Crafted with <Heart className="w-3.5 h-3.5 text-brand-orange fill-brand-orange" /> for Shawarma Line
-            </span>
-          </div>
+          <p className="flex items-center gap-1">
+            <span>Crafted with</span>
+            <Heart className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+            <span>for Kasur Food Lovers</span>
+          </p>
         </div>
       </div>
     </footer>

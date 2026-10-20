@@ -58,15 +58,16 @@ export function GallerySection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/40 text-brand-orange text-xs font-bold uppercase tracking-wider mb-3">
-            <Flame className="w-3.5 h-3.5 text-brand-yellow" />
-            <span>Behind The Grill</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3">
+            <Camera className="w-3.5 h-3.5 text-orange-400" />
+            <span>Real Restaurant &amp; Food Photos</span>
           </div>
           <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
-            The Sizzle &amp; <span className="text-brand-yellow">Fire</span>
+            Life at <span className="text-amber-400">Easy Cheesy</span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-300 font-sans">
-            A glimpse into the daily craft at Shawarma Line. Searing heat, slow-carved rotisserie meats, and stone ovens.
+            A real glimpse into our vibrant 2-floor dining hall on Shahbaz Khan Road,
+            the upper Kids Zone, and our freshly plated burgers, crown pizzas, and broast.
           </p>
         </div>
 

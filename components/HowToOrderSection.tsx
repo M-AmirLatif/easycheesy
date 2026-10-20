@@ -7,8 +7,8 @@ import {
   Smile,
   Bike,
   Store,
-  ShoppingBag,
-  Car,
+  Baby,
+  Clock,
   ArrowRight,
   Flame,
 } from "lucide-react";
@@ -18,18 +18,18 @@ export function HowToOrderSection() {
   const steps = [
     {
       num: "01",
-      title: "Choose Your Sizzle",
+      title: "Explore The Menu",
       description:
-        "Select your favorite slow-roasted shawarma, crispy zinger, stone-baked pizza, or loaded platter.",
+        "Select your favorite double beef smash burger, crown crust pizza, flavor-injected broast, or club sandwiches.",
       icon: Utensils,
-      accent: "text-brand-yellow",
+      accent: "text-amber-400",
       bgGradient: "from-amber-500/20 to-orange-500/10",
     },
     {
       num: "02",
       title: "Tap WhatsApp or Call",
       description:
-        "Hit 'Order on WhatsApp' to send your auto-formatted cart, or call 0327-0090903 for direct assistance.",
+        `Send your order directly to our WhatsApp with 1-click cart, or call ${RESTAURANT_INFO.phonePrimary} for immediate assistance.`,
       icon: PhoneCall,
       accent: "text-emerald-400",
       bgGradient: "from-emerald-500/20 to-teal-500/10",
@@ -38,50 +38,50 @@ export function HowToOrderSection() {
       num: "03",
       title: "Hot & Fresh Enjoyment",
       description:
-        "Savor steaming hot goodness at our dine-in hall, grab your quick takeaway, or receive fast delivery.",
+        "Savor sizzling hot food in our air-conditioned family hall, pick up at our takeaway counter, or get fast delivery.",
       icon: Smile,
-      accent: "text-brand-orange",
-      bgGradient: "from-brand-orange/20 to-red-500/10",
+      accent: "text-orange-400",
+      bgGradient: "from-orange-500/20 to-red-500/10",
     },
   ];
 
   const services = [
     {
       icon: Bike,
-      title: "Fast Delivery",
-      subtitle: "Across College Road & Kasur city",
+      title: "Doorstep Delivery",
+      desc: "Fast riders delivering piping hot burgers & pizzas across Kasur city till 2 AM.",
     },
     {
       icon: Store,
-      title: "Family Dine-In",
-      subtitle: "Clean, air-conditioned comfortable hall",
+      title: "Quick Takeaway",
+      desc: "Call ahead or order online for fast counter pickup on Shahbaz Khan Road.",
     },
     {
-      icon: ShoppingBag,
-      title: "Express Takeaway",
-      subtitle: "Freshly packed hot at our counter",
+      icon: Baby,
+      title: "Family Hall & Kids Zone",
+      desc: "Two-floor modern dining hall with a dedicated inflatable play area for children.",
     },
     {
-      icon: Car,
-      title: "Drive-Through / Car Service",
-      subtitle: "Convenient window pickup right to your car",
+      icon: Clock,
+      title: "Late Night Till 2 AM",
+      desc: "Craving midnight bites? Our kitchen stays open daily until 2:00 AM.",
     },
   ];
 
   return (
-    <section className="py-20 sm:py-28 bg-[#101010] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/40 text-brand-orange text-xs font-bold uppercase tracking-wider mb-3">
-            <Flame className="w-3.5 h-3.5 text-brand-yellow" />
-            <span>Effortless Ordering</span>
+    <section className="py-20 sm:py-28 bg-[#0F0F11] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3">
+            <Flame className="w-3.5 h-3.5 text-orange-500" />
+            <span>Fast, Fresh &amp; Effortless</span>
           </div>
           <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
-            How To <span className="text-brand-yellow">Order</span>
+            How It <span className="text-amber-400">Works</span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-300 font-sans">
-            Three simple steps between you and Kasur&apos;s most satisfying grill experience.
+            From craving to first bite in three seamless steps.
           </p>
         </div>
 
@@ -92,58 +92,61 @@ export function HowToOrderSection() {
             return (
               <div
                 key={index}
-                className="relative rounded-2xl p-7 bg-neutral-900 border border-neutral-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-1 shadow-card flex flex-col justify-between"
+                className="relative rounded-2xl p-6 sm:p-8 bg-neutral-900 border border-neutral-800 shadow-xl flex flex-col justify-between group hover:border-amber-500/60 transition-all duration-300 hover:-translate-y-1.5"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="font-display font-black text-4xl text-neutral-700 tracking-wider">
+                    <div
+                      className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${step.bgGradient} border border-neutral-700/60 flex items-center justify-center group-hover:scale-110 transition-transform`}
+                    >
+                      <Icon className={`w-7 h-7 ${step.accent}`} />
+                    </div>
+                    <span className="font-display font-black text-4xl text-neutral-700 group-hover:text-amber-400/40 transition-colors">
                       {step.num}
                     </span>
-                    <div
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.bgGradient} border border-neutral-700 flex items-center justify-center`}
-                    >
-                      <Icon className={`w-6 h-6 ${step.accent}`} />
-                    </div>
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-bold text-white font-sans mb-3">
+                  <h3 className="font-display font-black text-2xl uppercase tracking-wide text-white mb-3 group-hover:text-amber-400 transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed">
+
+                  <p className="text-sm text-neutral-400 font-sans leading-relaxed">
                     {step.description}
                   </p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-neutral-800/80 flex items-center gap-1.5 text-xs font-bold text-amber-400 uppercase tracking-wider">
+                  <span>Step {step.num}</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* 4 Fulfillment Services */}
-        <div className="pt-8 border-t border-neutral-800/80">
-          <h3 className="text-center text-xs font-bold uppercase tracking-widest text-neutral-400 mb-8">
-            Flexible Dining &amp; Delivery Channels in Kasur
-          </h3>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {services.map((svc, i) => {
-              const Icon = svc.icon;
-              return (
-                <div
-                  key={i}
-                  className="flex flex-col items-center text-center p-5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 hover:border-neutral-700 transition-colors"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-neutral-800 flex items-center justify-center mb-3">
-                    <Icon className="w-5 h-5 text-brand-yellow" />
-                  </div>
-                  <h4 className="text-sm font-bold text-white mb-1 font-sans">
-                    {svc.title}
+        {/* 4 Service Pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {services.map((serv, index) => {
+            const Icon = serv.icon;
+            return (
+              <div
+                key={index}
+                className="p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 flex items-start gap-4 hover:border-amber-500/40 transition-colors"
+              >
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Icon className="w-5 h-5 text-amber-400" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-1">
+                    {serv.title}
                   </h4>
-                  <p className="text-xs text-neutral-400">
-                    {svc.subtitle}
+                  <p className="text-xs text-neutral-400 leading-relaxed font-sans">
+                    {serv.desc}
                   </p>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

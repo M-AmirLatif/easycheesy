@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Bebas_Neue, Kaushan_Script } from "next/font/google";
+import { Plus_Jakarta_Sans, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { Navbar } from "@/components/Navbar";
@@ -23,47 +23,43 @@ const bebas = Bebas_Neue({
   weight: ["400"],
 });
 
-const kaushan = Kaushan_Script({
-  subsets: ["latin"],
-  variable: "--font-kaushan",
-  display: "swap",
-  weight: ["400"],
-});
-
 export const viewport: Viewport = {
-  themeColor: "#0E0E0E",
+  themeColor: "#0C0C0E",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
 };
 
 export const metadata: Metadata = {
-  title: "Shawarma Line Kasur | Juicy Shawarma, Zinger Burgers & Pizzas Till 2 AM",
+  metadataBase: new URL("https://easycheesy.pk"),
+  title: "Easy Cheesy Kasur | Smash Burgers, Crown Pizzas & Broast Till 2 AM",
   description:
-    "All Taste Behind Me. Order Kasur's favorite charcoal grilled chicken shawarmas, crispy zinger burgers, cheese stuffed crust pizzas, and loaded fries. Open daily till 2:00 AM on Govt. Islamia College Road.",
+    "Serving Moments, Not Just Meals. Kasur's favorite ultimate double beef smash burgers, cheesy crown pizzas, crispy injected broast, club sandwiches, and Chinese cuisine. 2-Floor family dining with Kids Play Zone on Shahbaz Khan Road. Open daily till 2:00 AM.",
   keywords: [
-    "Shawarma Line",
-    "Shawarma Line Kasur",
+    "Easy Cheesy",
+    "Easy Cheesy Kasur",
+    "Easy Cheesy Restaurant",
+    "Smash Burger Kasur",
+    "Crown Crust Pizza Kasur",
+    "Injected Broast Kasur",
+    "Shahbaz Khan Road Food",
     "Kasur Fast Food",
-    "Late Night Food Kasur",
-    "Zinger Burger Kasur",
-    "Cheese Crust Pizza Kasur",
-    "Charcoal Grill Shawarma",
-    "College Road Kasur Food",
+    "Late Night Delivery Kasur",
+    "Kids Play Zone Restaurant Kasur",
   ],
-  authors: [{ name: "Shawarma Line" }],
+  authors: [{ name: "Easy Cheesy Kasur" }],
   openGraph: {
-    title: "Shawarma Line Kasur | All Taste Behind Me",
+    title: "Easy Cheesy Kasur | Ultimate Smash Burgers & Crown Pizzas",
     description:
-      "Kasur's premier late-night grill destination. Sizzling rotisserie shawarma, monster zinger burgers, stuffed crust pizza, and loaded fries till 2 AM.",
-    url: "https://shawarmaline.pk",
-    siteName: "Shawarma Line",
+      "Serving Moments, Not Just Meals. Double beef smash burgers, cheesy crown pizzas, injected crispy broast & late-night delivery till 2 AM in Kasur.",
+    url: "https://easycheesy.pk",
+    siteName: "Easy Cheesy",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&h=630&q=85",
+        url: "/images/easy-cheesy/burger-smash-cut.png",
         width: 1200,
         height: 630,
-        alt: "Shawarma Line Kasur - Sizzling Charcoal Grill & Shawarma",
+        alt: "Easy Cheesy Kasur - Ultimate Beef Smash Burger & Sizzling Fast Food Feast",
       },
     ],
     locale: "en_PK",
@@ -71,20 +67,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shawarma Line Kasur | Juicy Shawarma & Burgers Till 2 AM",
+    title: "Easy Cheesy Kasur | Serving Moments, Not Just Meals",
     description:
-      "All Taste Behind Me. Kasur's favorite charcoal grilled chicken shawarma, crispy burgers, and gourmet pizza.",
-    images: [
-      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&h=630&q=85",
-    ],
+      "Kasur's home for juicy double smash burgers, cheesy crown crust pizza, injected broast, and club sandwiches. Open daily till 2 AM.",
+    images: ["/images/easy-cheesy/burger-smash-cut.png"],
   },
   icons: {
     icon: [
-      { url: "/favicon.png", sizes: "64x64", type: "image/png" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/images/easy-cheesy-badge.svg", type: "image/svg+xml" },
     ],
-    shortcut: "/favicon.ico",
-    apple: "/favicon.png",
+    shortcut: "/images/easy-cheesy-badge.svg",
+    apple: "/images/easy-cheesy-badge.svg",
   },
 };
 
@@ -96,7 +89,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} ${bebas.variable} ${kaushan.variable} scroll-smooth`}
+      className={`${jakarta.variable} ${bebas.variable} scroll-smooth`}
     >
       <head>
         <RestaurantJsonLd />
@@ -104,38 +97,37 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               html, body {
-                background-color: #0E0E0E !important;
+                background-color: #0C0C0E !important;
                 color: #FDFBF7 !important;
                 margin: 0;
                 padding: 0;
-              }
-              a {
-                color: inherit;
-                text-decoration: none;
+                font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
               }
             `,
           }}
         />
       </head>
-      <body className="min-h-screen bg-brand-charcoal text-brand-offwhite flex flex-col antialiased selection:bg-brand-orange selection:text-white">
+      <body className="bg-[#0C0C0E] text-[#FDFBF7] antialiased min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-black">
         <CartProvider>
-          {/* Flame animation splash screen on initial visit */}
+          {/* Animated Splash Screen */}
           <LoadingScreen />
 
-          {/* Sticky Glass Navbar */}
+          {/* Top Sticky Navigation */}
           <Navbar />
 
-          {/* Main App Content */}
-          <main className="flex-1">{children}</main>
+          {/* Main Page Content */}
+          <main className="flex-1 w-full">{children}</main>
 
           {/* Site Footer */}
           <Footer />
 
-          {/* Slide-over Order Cart Drawer */}
-          <CartDrawer />
-
-          {/* Mobile Bottom Fixed Action Bar (Call / WhatsApp / Cart) */}
+          {/* Mobile Bottom Fixed Action Bar (Call, WhatsApp, Cart) */}
           <MobileActionBar />
+
+          {/* Cart Slide-over Drawer */}
+          <CartDrawer />
         </CartProvider>
       </body>
     </html>

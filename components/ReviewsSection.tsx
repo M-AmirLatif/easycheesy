@@ -7,6 +7,7 @@ import { RESTAURANT_INFO } from "@/lib/restaurant-info";
 interface Review {
   name: string;
   quote: string;
+  dish: string;
   badge: string;
   date: string;
 }
@@ -14,24 +15,60 @@ interface Review {
 export function ReviewsSection() {
   const reviews: Review[] = [
     {
-      name: "Ghulam M.",
-      quote: "Best taste, best service, best quality in Kasur.",
-      badge: "Local Guide",
-      date: "Google Review",
+      name: "Ch Ahmad Ayaz Kasuri",
+      quote:
+        "Easy Cheesy’s Injected Broast is super tasty, crispy outside and juicy inside, making every bite full of flavor. Their sandwiches are also amazing, fresh, and perfectly balanced, making it a must-try spot for a quick, delicious meal.",
+      dish: "Injected Broast & Sandwiches",
+      badge: "Local Guide • 199 Reviews",
+      date: "Google Maps Review",
     },
     {
-      name: "Muhammad U.",
+      name: "Hamza SSH",
       quote:
-        "Tasted their shawarma, burger, sandwiches, everything is more than delicious.",
+        "Awesome taste & fast service! Love At First Bite Pizza and Beef Smash Burger are uffffffff amazing! Definitely recommended in Kasur.",
+      dish: "Beef Smash Burger & Pizza",
       badge: "Verified Customer",
-      date: "Google Review",
+      date: "Google Maps Review",
     },
     {
-      name: "Ahmad A.",
+      name: "Afzaal Saeed",
       quote:
-        "The grilled chicken is perfectly cooked, with excellent quality and generous quantity.",
-      badge: "Regular Diner",
-      date: "Google Review",
+        "The food was absolutely delicious – we enjoyed it a lot! Worth visiting for the incredible taste and flavor quality.",
+      dish: "Fast Food Variety",
+      badge: "Local Reviewer",
+      date: "Google Maps Review",
+    },
+    {
+      name: "Zahra Alam",
+      quote:
+        "I ordered mighty zinger burger and cocktail sandwiches… Super duper hit and classical! I recommend all must visit Easy Cheesy Kasur.",
+      dish: "Mighty Zinger & Cocktail Sandwich",
+      badge: "Local Guide",
+      date: "Google Maps Review",
+    },
+    {
+      name: "Momina Shahbaz",
+      quote:
+        "Soooo good food, just loved it! Best pizza and best broast in town, everything on point. Great experience for family dinner.",
+      dish: "Best Pizza & Broast",
+      badge: "Family Diner",
+      date: "Google Maps Review",
+    },
+    {
+      name: "Adil Arain",
+      quote:
+        "Really enjoyed my visit! The burgers, pizzas, and broast were super tasty and fresh — a great spot if you’re craving something delicious in Kasur.",
+      dish: "Burgers, Pizzas & Broast",
+      badge: "Verified Customer",
+      date: "Google Maps Review",
+    },
+    {
+      name: "Khadija Yousaf",
+      quote:
+        "A good ambience & tasty cheesy food at the same time. Very comfortable place for family with the kids area.",
+      dish: "Cheesy Food & Family Hall",
+      badge: "Family Dining",
+      date: "Google Maps Review",
     },
   ];
 
@@ -42,12 +79,22 @@ export function ReviewsSection() {
     if (!isAutoPlay) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % reviews.length);
-    }, 4500);
+    }, 5000);
     return () => clearInterval(interval);
   }, [isAutoPlay, reviews.length]);
 
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % reviews.length);
+  };
+
+  const current = reviews[currentIndex];
+
   return (
-    <section id="reviews" className="py-20 sm:py-28 bg-[#141414] relative overflow-hidden">
+    <section id="reviews" className="py-20 sm:py-28 bg-[#121214] relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
@@ -56,10 +103,10 @@ export function ReviewsSection() {
             <span>{RESTAURANT_INFO.rating} ★ Google Rating ({RESTAURANT_INFO.reviewCount} Reviews)</span>
           </div>
           <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
-            What Kasur Says <span className="text-brand-yellow">About Us</span>
+            What Kasur Says <span className="text-amber-400">About Us</span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-300 font-sans">
-            Real feedback from local foodies and loyal regulars in Kasur.
+            Real, uncensored reviews from foodies and families dining at Easy Cheesy Kasur.
           </p>
         </div>
 
@@ -69,86 +116,83 @@ export function ReviewsSection() {
           onMouseLeave={() => setIsAutoPlay(true)}
           className="relative rounded-3xl p-6 sm:p-12 bg-neutral-900 border border-neutral-800 shadow-2xl overflow-hidden"
         >
-          {/* Subtle fiery glow backdrop */}
-          <div className="absolute -top-12 -right-12 w-48 h-48 bg-brand-orange/15 blur-3xl rounded-full pointer-events-none" />
+          {/* Large decorative quotation mark background */}
+          <Quote className="absolute -bottom-6 -right-6 w-44 h-44 text-neutral-800/20 pointer-events-none" />
 
-          {/* Quote mark decoration */}
-          <Quote className="w-12 h-12 sm:w-16 sm:h-16 text-brand-orange/20 mb-4" />
-
-          <div className="min-h-[120px] sm:min-h-[140px] flex flex-col justify-center">
-            {/* Stars */}
-            <div className="flex items-center gap-1 text-amber-400 mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-              ))}
-              <span className="ml-2 text-xs font-bold text-neutral-400">
-                5.0 Stars
-              </span>
-            </div>
-
-            {/* Actual Review Quote */}
-            <blockquote className="text-lg sm:text-2xl font-bold text-white font-sans leading-relaxed tracking-wide mb-6">
-              &ldquo;{reviews[currentIndex].quote}&rdquo;
-            </blockquote>
-
-            {/* Author info */}
-            <div className="flex items-center justify-between border-t border-neutral-800/80 pt-4 flex-wrap gap-2">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-orange to-amber-500 flex items-center justify-center font-display font-black text-white text-lg">
-                  {reviews[currentIndex].name.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
-                    {reviews[currentIndex].name}
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  </h4>
-                  <p className="text-xs text-neutral-400">
-                    {reviews[currentIndex].badge} • {reviews[currentIndex].date}
-                  </p>
-                </div>
-              </div>
-
-              {/* Navigation Arrows */}
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() =>
-                    setCurrentIndex((prev) =>
-                      prev === 0 ? reviews.length - 1 : prev - 1
-                    )
-                  }
-                  className="p-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center border border-neutral-700"
-                  aria-label="Previous Review"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() =>
-                    setCurrentIndex((prev) => (prev + 1) % reviews.length)
-                  }
-                  className="p-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center border border-neutral-700"
-                  aria-label="Next Review"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="flex items-center justify-center gap-2 mt-6">
-            {reviews.map((_, i) => (
-              <button
+          {/* Stars */}
+          <div className="flex items-center gap-1.5 mb-6">
+            {[...Array(5)].map((_, i) => (
+              <Star
                 key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  currentIndex === i
-                    ? "w-8 bg-brand-orange"
-                    : "w-2 bg-neutral-700 hover:bg-neutral-600"
-                }`}
-                aria-label={`Jump to review ${i + 1}`}
+                className="w-5 h-5 fill-amber-400 text-amber-400 drop-shadow-sm"
               />
             ))}
+            <span className="text-xs font-bold text-amber-300/80 uppercase tracking-wider ml-2">
+              5.0 Star Feedback
+            </span>
           </div>
+
+          {/* Quote */}
+          <blockquote className="text-lg sm:text-2xl text-white font-sans font-medium leading-relaxed mb-6">
+            &ldquo;{current.quote}&rdquo;
+          </blockquote>
+
+          {/* Reviewer Details */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-neutral-800">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-white text-base sm:text-lg">
+                  {current.name}
+                </span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              </div>
+              <div className="flex items-center gap-2 text-xs text-neutral-400 mt-1">
+                <span>{current.badge}</span>
+                <span className="text-neutral-600">&bull;</span>
+                <span className="text-amber-400/90 font-semibold">{current.dish}</span>
+                <span className="text-neutral-600">&bull;</span>
+                <span>{current.date}</span>
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous review"
+                className="w-10 h-10 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white flex items-center justify-center transition-colors border border-neutral-700"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next review"
+                className="w-10 h-10 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-300 hover:text-white flex items-center justify-center transition-colors border border-neutral-700"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Carousel indicator dots */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {reviews.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setCurrentIndex(i)}
+              aria-label={`Go to review ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === currentIndex
+                  ? "w-8 bg-amber-400"
+                  : "w-2 bg-neutral-700 hover:bg-neutral-600"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>

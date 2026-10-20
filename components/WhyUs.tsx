@@ -1,7 +1,19 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Flame, Scale, Clock, Utensils, Star, Award, HeartHandshake, ShieldCheck } from "lucide-react";
+import {
+  Flame,
+  Scale,
+  Clock,
+  Sparkles,
+  Star,
+  Award,
+  HeartHandshake,
+  ShieldCheck,
+  Smile,
+  Layers,
+} from "lucide-react";
+import { RESTAURANT_INFO } from "@/lib/restaurant-info";
 
 export function WhyUs() {
   const [counts, setCounts] = useState({
@@ -11,7 +23,6 @@ export function WhyUs() {
     quality: 0,
   });
 
-  // Animated honest counters on mount
   useEffect(() => {
     let frame = 0;
     const totalFrames = 40;
@@ -19,8 +30,8 @@ export function WhyUs() {
       frame++;
       const progress = Math.min(1, frame / totalFrames);
       setCounts({
-        rating: +(4.5 * progress).toFixed(1),
-        items: Math.floor(45 * progress),
+        rating: +(4.1 * progress).toFixed(1),
+        items: Math.floor(105 * progress),
         closeTime: 2,
         quality: Math.floor(100 * progress),
       });
@@ -36,144 +47,144 @@ export function WhyUs() {
   const features = [
     {
       icon: Flame,
-      title: "Fresh Flame-Grilled Chicken",
+      title: "Real Smashed Patties & Injected Broast",
       description:
-        "Every skewer is freshly marinated with natural spices and grilled over live charcoal embers. No frozen processed patties.",
-      badge: "Pure Charcoal Grill",
+        "Juicy double beef patties smashed crisp on high-heat griddles, plus tender flavor-injected crispy broast. Real taste, no shortcuts.",
+      badge: "Signature Craft",
       glowColor: "from-amber-500/20 to-orange-600/10",
-      borderColor: "border-orange-500/30",
+      borderColor: "border-amber-500/30",
     },
     {
-      icon: Scale,
-      title: "Generous Kasuri Portions",
+      icon: Smile,
+      title: "Family Dining & Dedicated Kids Zone",
       description:
-        "We believe true taste comes with genuine satisfaction. Every roll, burger, and platter is loaded generously with meat and cheese.",
-      badge: "No Compromise",
+        "Modern two-floor air-conditioned hall with luxury seating, cozy family booths, and an upstairs Kids Play Zone with an inflatable castle.",
+      badge: "Family Friendly",
       glowColor: "from-yellow-500/20 to-amber-600/10",
       borderColor: "border-yellow-500/30",
     },
     {
-      icon: Clock,
-      title: "Late-Night Sizzle Till 2 AM",
+      icon: Layers,
+      title: "Artisan Cheesy Crown Pizzas",
       description:
-        "Kasur's favorite midnight hub. Whether studying late, coming from duty, or hanging out with friends, we are open until 2:00 AM daily.",
-      badge: "Open Till 2 AM",
-      glowColor: "from-red-500/20 to-orange-600/10",
-      borderColor: "border-red-500/30",
+        "Cheesy crown crusts, stuffed rings, and generous mozzarella toppings made with 100% pure dairy cheese and house secret sauces.",
+      badge: "Pure Indulgence",
+      glowColor: "from-orange-500/20 to-amber-600/10",
+      borderColor: "border-orange-500/30",
     },
     {
-      icon: Utensils,
-      title: "Dine-In, Takeaway & Delivery",
+      icon: Clock,
+      title: "Late-Night Feast Till 2 AM",
       description:
-        "Air-conditioned family hall, lightning-fast counter takeaway, and steaming hot doorstep delivery across College Road & Kasur.",
-      badge: "Full Service",
-      glowColor: "from-emerald-500/20 to-teal-600/10",
-      borderColor: "border-emerald-500/30",
+        "Kasur's favorite midnight hub. Whether family dinner, friends hangout, or late-night study cravings, our kitchen serves hot till 2:00 AM daily.",
+      badge: "Open Till 2 AM",
+      glowColor: "from-amber-600/20 to-red-600/10",
+      borderColor: "border-amber-600/30",
     },
   ];
 
   return (
-    <section id="why-us" className="py-20 sm:py-28 bg-[#121212] relative overflow-hidden">
-      {/* Decorative ambient glowing circles */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-brand-orange/10 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-brand-yellow/10 blur-[130px] rounded-full pointer-events-none" />
+    <section id="why-us" className="py-20 sm:py-28 bg-[#101012] relative overflow-hidden">
+      {/* Background radial highlights */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-amber-500/10 blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-orange-600/10 blur-[130px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-xs font-bold uppercase tracking-wider mb-3">
-            <Award className="w-3.5 h-3.5" />
-            <span>Kasur&apos;s Trusted Taste</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-400 text-xs font-black uppercase tracking-wider mb-3">
+            <Award className="w-3.5 h-3.5 text-orange-400" />
+            <span>Kasur&apos;s Premium Fast Food</span>
           </div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-4">
-            Why Kasur Loves <span className="text-brand-yellow">Shawarma Line</span>
+          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
+            Why Choose <span className="text-amber-400">Easy Cheesy</span>?
           </h2>
-          <p className="text-sm sm:text-base text-neutral-300 font-sans leading-relaxed">
-            From our sizzling rotisseries to our stone-baked pizza ovens, we don&apos;t take shortcuts.
-            Here is what makes every bite memorable.
+          <p className="text-sm sm:text-base text-neutral-300 font-sans">
+            &ldquo;Serving Moments, Not Just Meals.&rdquo; Discover why families and food lovers
+            across Kasur choose us for their favorite burgers, pizzas, and celebrations.
           </p>
         </div>
 
-        {/* 4 Feature Cards */}
+        {/* 4 Feature Highlights Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {features.map((item, index) => {
-            const Icon = item.icon;
+          {features.map((feat, index) => {
+            const Icon = feat.icon;
             return (
               <div
                 key={index}
-                className={`group relative rounded-2xl p-6 bg-neutral-900/90 border ${item.borderColor} hover:border-brand-orange transition-all duration-300 hover:-translate-y-1.5 shadow-card hover:shadow-fiery flex flex-col justify-between`}
+                className={`relative rounded-2xl p-6 bg-neutral-900/90 border ${feat.borderColor} hover:border-amber-400/80 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between shadow-card group overflow-hidden`}
               >
-                {/* Background radial glow on hover */}
                 <div
-                  className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${item.glowColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+                  className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${feat.glowColor} rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500`}
                 />
 
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-neutral-800 border border-neutral-700 group-hover:border-brand-yellow flex items-center justify-center mb-5 transition-colors">
-                    <Icon className="w-6 h-6 text-brand-yellow group-hover:text-brand-orange transition-colors" />
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-neutral-800/80 border border-neutral-700/60 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-6 h-6 text-amber-400" />
                   </div>
 
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-neutral-800 text-brand-yellow border border-neutral-700 inline-block mb-3">
-                    {item.badge}
+                  <span className="text-[10px] font-black uppercase tracking-wider text-orange-400 block mb-1">
+                    {feat.badge}
                   </span>
 
-                  <h3 className="text-lg font-bold text-white mb-2 font-sans group-hover:text-brand-yellow transition-colors">
-                    {item.title}
+                  <h3 className="font-display font-black text-xl uppercase tracking-wide text-white mb-2 leading-snug">
+                    {feat.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                    {item.description}
+                  <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed">
+                    {feat.description}
                   </p>
+                </div>
+
+                <div className="mt-5 pt-3 border-t border-neutral-800/80 flex items-center gap-1.5 text-neutral-500 group-hover:text-amber-400 transition-colors text-xs font-semibold">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Quality Guaranteed</span>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Honest Animated Counter Bar */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-neutral-900 via-neutral-900/95 to-neutral-900 border border-neutral-800 shadow-xl divide-y sm:divide-y-0 sm:divide-x divide-neutral-800">
-          {/* Stat 1: Google Rating */}
-          <div className="flex flex-col items-center justify-center p-4">
-            <div className="flex items-center gap-1.5 text-brand-yellow mb-1">
-              <Star className="w-5 h-5 fill-brand-yellow" />
-              <span className="font-display font-black text-3xl sm:text-4xl text-white">
-                {counts.rating}
-              </span>
-              <span className="text-sm font-bold text-neutral-400">/ 5.0</span>
+        {/* Live Honest Stats Bar */}
+        <div className="rounded-3xl p-6 sm:p-8 bg-neutral-900 border border-neutral-800 shadow-2xl grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="p-3">
+            <div className="font-display font-black text-3xl sm:text-4xl text-amber-400 mb-1">
+              {counts.rating} ★
             </div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 text-center">
-              Google Rating (480+ Reviews)
+            <p className="text-xs font-bold uppercase tracking-wider text-neutral-300">
+              Google Maps Rating
             </p>
+            <p className="text-[11px] text-neutral-400 mt-0.5">269+ real customer reviews</p>
           </div>
 
-          {/* Stat 2: Menu Items */}
-          <div className="flex flex-col items-center justify-center p-4">
-            <span className="font-display font-black text-3xl sm:text-4xl text-brand-orange mb-1">
+          <div className="p-3 border-l border-neutral-800/80">
+            <div className="font-display font-black text-3xl sm:text-4xl text-orange-400 mb-1">
               {counts.items}+
-            </span>
-            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 text-center">
-              Fresh Menu Items
+            </div>
+            <p className="text-xs font-bold uppercase tracking-wider text-neutral-300">
+              Menu Varieties
             </p>
+            <p className="text-[11px] text-neutral-400 mt-0.5">Burgers, pizzas, broast &amp; Chinese</p>
           </div>
 
-          {/* Stat 3: Late Night Closing */}
-          <div className="flex flex-col items-center justify-center p-4">
-            <span className="font-display font-black text-3xl sm:text-4xl text-white mb-1">
-              {counts.closeTime} AM
-            </span>
-            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 text-center">
-              Daily Late Night Service
+          <div className="p-3 border-l border-neutral-800/80">
+            <div className="font-display font-black text-3xl sm:text-4xl text-amber-400 mb-1">
+              {counts.closeTime}:00 AM
+            </div>
+            <p className="text-xs font-bold uppercase tracking-wider text-neutral-300">
+              Midnight Hub
             </p>
+            <p className="text-[11px] text-neutral-400 mt-0.5">Open every single day</p>
           </div>
 
-          {/* Stat 4: Fresh Chicken Guarantee */}
-          <div className="flex flex-col items-center justify-center p-4">
-            <span className="font-display font-black text-3xl sm:text-4xl text-brand-yellow mb-1">
+          <div className="p-3 border-l border-neutral-800/80">
+            <div className="font-display font-black text-3xl sm:text-4xl text-emerald-400 mb-1">
               {counts.quality}%
-            </span>
-            <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 text-center">
-              Fresh Daily Marinated Chicken
+            </div>
+            <p className="text-xs font-bold uppercase tracking-wider text-neutral-300">
+              Fresh Ingredients
             </p>
+            <p className="text-[11px] text-neutral-400 mt-0.5">100% Halal &amp; clean kitchen</p>
           </div>
         </div>
       </div>

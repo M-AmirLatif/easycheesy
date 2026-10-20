@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://shawarmaline.pk/sitemap.xml",
+    sitemap: "https://easycheesy.pk/sitemap.xml",
   };
 }

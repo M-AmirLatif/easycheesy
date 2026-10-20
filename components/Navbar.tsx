@@ -71,8 +71,8 @@ export function Navbar() {
           {/* Brand Logo */}
           <Link
             href="#hero"
-            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded-xl p-1"
-            aria-label="Shawarma Line Homepage"
+            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-xl p-1"
+            aria-label="Easy Cheesy Homepage"
           >
             <BrandLogo size="md" />
           </Link>
@@ -134,7 +134,7 @@ export function Navbar() {
 
             {/* Desktop WhatsApp CTA */}
             <a
-              href={`https://wa.me/${RESTAURANT_INFO.whatsAppNumber}?text=Salam%20Shawarma%20Line!%20I%20would%20like%20to%20view%20the%20menu%20and%20order.`}
+              href={`https://wa.me/${RESTAURANT_INFO.whatsAppNumber}?text=Salam%20Easy%20Cheesy!%20I%20would%20like%20to%20view%20the%20menu%20and%20order.`}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-emerald-950/40 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
@@ -146,7 +146,7 @@ export function Navbar() {
             {/* Mobile Hamburger Drawer Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-200 hover:text-white min-h-[44px] min-w-[44px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange"
+              className="lg:hidden p-2 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-200 hover:text-white min-h-[44px] min-w-[44px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
               aria-label={mobileMenuOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
               aria-expanded={mobileMenuOpen}
             >
@@ -158,7 +158,7 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-[#0E0E0E] z-50 overflow-y-auto border-t border-neutral-800 shadow-2xl animate-in fade-in duration-150">
+        <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-[#0C0C0E] z-50 overflow-y-auto border-t border-neutral-800 shadow-2xl animate-in fade-in duration-150">
           <div className="max-w-md mx-auto px-5 py-5 flex flex-col gap-3 min-h-full pb-32">
             {/* Live Open Pill on Mobile Drawer */}
             <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
@@ -171,7 +171,7 @@ export function Navbar() {
 
             <div className="py-2 flex items-center justify-between border-b border-neutral-800/60 pb-3">
               <BrandLogo size="sm" />
-              <div className="text-[11px] font-bold text-brand-orange uppercase tracking-wider">
+              <div className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">
                 Official Menu
               </div>
             </div>
@@ -182,10 +182,10 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between py-3 px-3.5 rounded-xl text-base font-bold text-neutral-200 hover:bg-neutral-900 hover:text-brand-yellow active:bg-neutral-800 transition-colors min-h-[48px]"
+                  className="flex items-center justify-between py-3 px-3.5 rounded-xl text-base font-bold text-neutral-200 hover:bg-neutral-900 hover:text-amber-400 active:bg-neutral-800 transition-colors min-h-[48px]"
                 >
                   <span>{link.name}</span>
-                  <Flame className="w-4 h-4 text-brand-orange/60" />
+                  <Flame className="w-4 h-4 text-orange-500/60" />
                 </a>
               ))}
             </nav>
@@ -196,11 +196,11 @@ export function Navbar() {
                 href={`tel:${RESTAURANT_INFO.phonePrimaryRaw}`}
                 className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-100 font-bold text-xs uppercase min-h-[44px]"
               >
-                <Phone className="w-4 h-4 text-brand-yellow" />
+                <Phone className="w-4 h-4 text-amber-400" />
                 <span>Call Us</span>
               </a>
               <a
-                href={`https://wa.me/${RESTAURANT_INFO.whatsAppNumber}?text=Salam%20Shawarma%20Line!%20I%20want%20to%20order.`}
+                href={`https://wa.me/${RESTAURANT_INFO.whatsAppNumber}?text=Salam%20Easy%20Cheesy!%20I%20want%20to%20order.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase min-h-[44px]"
@@ -211,8 +211,8 @@ export function Navbar() {
             </div>
 
             <div className="flex items-center gap-2 text-[11px] text-neutral-400 pt-3 text-center justify-center border-t border-neutral-800/60">
-              <MapPin className="w-3.5 h-3.5 text-brand-orange" />
-              <span>Govt. Islamia College Road, Kasur</span>
+              <MapPin className="w-3.5 h-3.5 text-amber-400" />
+              <span>Shahbaz Khan Road, Kasur</span>
             </div>
           </div>
         </div>

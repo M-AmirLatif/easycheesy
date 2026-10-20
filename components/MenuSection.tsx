@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Image from "next/image";
 import {
   MENU_CATEGORIES,
   MENU_ITEMS,
@@ -8,24 +9,26 @@ import {
   MenuItem,
 } from "@/data/menu";
 import { useCart } from "@/context/CartContext";
+import { SHIMMER_BLUR } from "@/lib/images";
 import {
   Search,
   Flame,
   Plus,
   Check,
   Sparkles,
-  Info,
-  X,
   Layers,
   UtensilsCrossed,
   Pizza,
   Beef,
   Sandwich,
-  Scroll,
-  CircleDot,
+  Drumstick,
   Soup,
   CupSoda,
-  Drumstick,
+  Coffee,
+  IceCream,
+  PlusCircle,
+  Scroll,
+  MessageCircle,
 } from "lucide-react";
 
 export function MenuSection() {
@@ -33,36 +36,39 @@ export function MenuSection() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSizes, setSelectedSizes] = useState<Record<string, string>>({});
   const [justAddedMap, setJustAddedMap] = useState<Record<string, boolean>>({});
-  const { addItem } = useCart();
+  const { addItem, setIsCartOpen } = useCart();
 
   // Category icons mapping
   const getCategoryIcon = (id: MenuCategoryId) => {
     switch (id) {
       case "all":
         return Flame;
-      case "shawarma":
-        return Flame;
       case "burger":
         return Beef;
-      case "starters":
-        return Drumstick;
-      case "loaded-fries":
-        return Layers;
+      case "pizza":
+        return Pizza;
       case "sandwich":
         return Sandwich;
-      case "paratha-roll":
+      case "broast":
+        return Drumstick;
+      case "wraps":
         return Scroll;
-      case "platters":
-        return UtensilsCrossed;
+      case "appetizers":
+        return Sparkles;
+      case "fries":
+        return Layers;
       case "pasta":
+        return UtensilsCrossed;
+      case "chinese":
         return Soup;
-      case "tortilla-wrap":
-        return CircleDot;
-      case "special-pizza":
-      case "regular-pizza":
-        return Pizza;
-      case "drinks":
+      case "shakes-frappes":
         return CupSoda;
+      case "mocktails-drinks":
+        return Coffee;
+      case "icecream-desserts":
+        return IceCream;
+      case "dips":
+        return PlusCircle;
       default:
         return Flame;
     }
@@ -98,135 +104,139 @@ export function MenuSection() {
 
     if (item.sizes && item.sizes.length > 0) {
       const chosenSizeName = selectedSizes[item.id] || item.sizes[0].name;
-      const foundSize = item.sizes.find((s) => s.name === chosenSizeName);
-      if (foundSize) {
-        price = foundSize.price;
-        sizeLabel = foundSize.name;
+      const chosen = item.sizes.find((s) => s.name === chosenSizeName);
+      if (chosen) {
+        price = chosen.price;
+        sizeLabel = chosen.name;
       }
     }
 
-    const key = sizeLabel ? `${item.id}-${sizeLabel}` : item.id;
+    const itemKey = sizeLabel ? `${item.id}-${sizeLabel}` : item.id;
 
     addItem({
       id: item.id,
       name: item.name,
-      price,
+      price: price,
       size: sizeLabel,
+      image: item.image,
     });
 
-    setJustAddedMap((prev) => ({ ...prev, [key]: true }));
+    setJustAddedMap((prev) => ({ ...prev, [itemKey]: true }));
     setTimeout(() => {
-      setJustAddedMap((prev) => ({ ...prev, [key]: false }));
+      setJustAddedMap((prev) => ({ ...prev, [itemKey]: false }));
     }, 1200);
   };
 
+  const currentCategoryObj = MENU_CATEGORIES.find(
+    (c) => c.id === activeCategory
+  );
+
   return (
-    <section id="menu" className="py-20 sm:py-28 bg-[#161616] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/40 text-brand-orange text-xs font-bold uppercase tracking-wider mb-3">
-            <Flame className="w-3.5 h-3.5 text-brand-yellow" />
-            <span>Complete Fast-Food Lineup</span>
+    <section id="menu" className="py-20 sm:py-28 bg-[#121214] relative overflow-hidden">
+      {/* Background glow accents */}
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-amber-500/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-orange-600/10 blur-[150px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3">
+            <Flame className="w-3.5 h-3.5 text-orange-500" />
+            <span>Complete A to Z Menu Catalog</span>
           </div>
           <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
-            Explore Our <span className="text-brand-yellow">Full Menu</span>
+            Easy Cheesy <span className="text-amber-400">Digital Menu</span>
           </h2>
           <p className="text-sm sm:text-base text-neutral-300 font-sans">
-            Every dish is prepared fresh to order in Kasur with premium quality chicken, cheese, and secret spices.
+            Every dish crafted fresh to order. Filter by category, customize sizes,
+            and order directly for takeaway or doorstep delivery across Kasur.
           </p>
         </div>
 
-        {/* Live Search Bar */}
-        <div className="max-w-md mx-auto mb-8 relative">
-          <div className="relative flex items-center">
-            <Search className="absolute left-4 w-5 h-5 text-neutral-400 pointer-events-none" />
+        {/* Search Bar */}
+        <div className="max-w-xl mx-auto mb-8 sm:mb-10">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search shawarma, zinger, cheese crust pizza..."
-              className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-400 text-sm focus:outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/30 transition-all shadow-inner"
-              aria-label="Search Menu"
+              placeholder="Search smash burgers, crown pizzas, broast, shakes, wings..."
+              className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-neutral-900/90 border border-neutral-700/80 text-white placeholder-neutral-400 text-sm sm:text-base focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all shadow-inner"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-3 p-1 rounded-full text-neutral-400 hover:text-white"
-                aria-label="Clear Search"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white p-1 text-xs"
               >
-                <X className="w-4 h-4" />
+                Clear
               </button>
             )}
           </div>
         </div>
 
-        {/* Sticky Category Tabs (Horizontal Scroll on Mobile, Centered on Wide Desktop) */}
-        <div className="sticky top-20 z-20 -mx-4 px-4 sm:mx-0 sm:px-0 py-3 bg-[#161616]/95 backdrop-blur-md border-y border-neutral-800/80 mb-10">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth pb-1 xl:justify-center">
-            {MENU_CATEGORIES.map((cat) => {
-              const Icon = getCategoryIcon(cat.id);
-              const isActive = activeCategory === cat.id;
+        {/* Category Filter Pills (Horizontal Scroll on Mobile) */}
+        <div className="mb-10 sm:mb-12 overflow-x-auto pb-3 pt-1 scrollbar-none flex gap-2 sm:gap-2.5 items-center justify-start md:justify-center">
+          {MENU_CATEGORIES.map((cat) => {
+            const Icon = getCategoryIcon(cat.id);
+            const isActive = activeCategory === cat.id;
+            const count =
+              cat.id === "all"
+                ? MENU_ITEMS.length
+                : MENU_ITEMS.filter((i) => i.category === cat.id).length;
 
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-150 h-10 flex-shrink-0 border ${
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider whitespace-nowrap transition-all duration-200 flex-shrink-0 ${
+                  isActive
+                    ? "bg-gradient-to-r from-amber-500 to-orange-500 text-black shadow-[0_0_20px_rgba(245,158,11,0.4)] scale-[1.02]"
+                    : "bg-neutral-900 border border-neutral-800 text-neutral-300 hover:text-white hover:border-neutral-700"
+                }`}
+              >
+                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-black" : "text-amber-400"}`} />
+                <span>{cat.shortName}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.5 rounded-full font-black ${
                     isActive
-                      ? "bg-brand-orange text-white border-brand-orange shadow-md font-black"
-                      : "bg-neutral-900/90 text-neutral-300 hover:text-brand-yellow hover:bg-neutral-800 border-neutral-800"
+                      ? "bg-black/25 text-black"
+                      : "bg-neutral-800 text-neutral-400"
                   }`}
-                  aria-pressed={isActive}
                 >
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? "text-white" : "text-brand-orange"}`} />
-                  <span>{cat.shortName}</span>
-                </button>
-              );
-            })}
-          </div>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Category Description Banner & Extra Topping Callout */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-neutral-900/80 border border-neutral-800 mb-8">
-          <div className="flex items-center gap-2.5 text-xs sm:text-sm text-neutral-300">
-            <Info className="w-4 h-4 text-brand-yellow flex-shrink-0" />
-            <span className="leading-snug">
-              {activeCategory === "all"
-                ? "Showing all dishes. Tap category pills above to filter."
-                : MENU_CATEGORIES.find((c) => c.id === activeCategory)?.description}
-            </span>
+        {/* Category Description Banner */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-neutral-900/60 border border-neutral-800 mb-8">
+          <div>
+            <h3 className="font-display font-black text-xl text-white tracking-wide uppercase">
+              {currentCategoryObj?.name || "All Items"}
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-400 font-sans">
+              {currentCategoryObj?.description}
+            </p>
           </div>
 
-          {/* Add-on Pricing Highlights */}
-          {(activeCategory === "platters" || activeCategory === "all") && (
-            <div className="text-[11px] sm:text-xs text-amber-300 font-semibold bg-neutral-950 px-3 py-2 rounded-xl border border-amber-500/20 flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span className="text-brand-orange font-bold uppercase tracking-wider text-[10px]">Platter Extras:</span>
-              <span>Bread Rs 50</span>
-              <span className="text-neutral-600">•</span>
-              <span>Extra Chicken Rs 150</span>
-              <span className="text-neutral-600">•</span>
-              <span>Dip Sauce Rs 60</span>
-            </div>
-          )}
-          {(activeCategory === "special-pizza" ||
-            activeCategory === "regular-pizza") && (
-            <div className="text-[11px] sm:text-xs text-amber-300 font-semibold bg-neutral-950 px-3 py-2 rounded-xl border border-amber-500/20 flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span className="text-brand-orange font-bold uppercase tracking-wider text-[10px]">Extra Topping:</span>
-              <span>Small Rs 50</span>
-              <span className="text-neutral-600">•</span>
-              <span>Medium Rs 100</span>
-              <span className="text-neutral-600">•</span>
-              <span>Large Rs 150</span>
-            </div>
-          )}
+          <div className="text-[11px] sm:text-xs text-amber-300 font-semibold bg-neutral-950 px-3 py-2 rounded-xl border border-amber-500/20 flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="text-orange-400 font-bold uppercase tracking-wider text-[10px]">Add-ons:</span>
+            <span>Cheese Slice Rs 80</span>
+            <span className="text-neutral-600">•</span>
+            <span>Extra Beef Patty Rs 300</span>
+            <span className="text-neutral-600">•</span>
+            <span>Sp. Dip Rs 100</span>
+          </div>
         </div>
 
         {/* Menu Cards Grid */}
         {filteredItems.length === 0 ? (
           <div className="text-center py-16 p-8 rounded-2xl bg-neutral-900 border border-neutral-800">
             <Search className="w-12 h-12 text-neutral-500 mx-auto mb-4" />
-            <h3 className="text-lg font-bold text-white mb-2">No items found</h3>
+            <h3 className="text-lg font-bold text-white mb-2">No dishes found</h3>
             <p className="text-sm text-neutral-400 mb-4">
               We couldn&apos;t find anything matching &ldquo;{searchQuery}&rdquo;.
             </p>
@@ -235,13 +245,13 @@ export function MenuSection() {
                 setSearchQuery("");
                 setActiveCategory("all");
               }}
-              className="px-4 py-2 rounded-xl bg-brand-orange text-white text-xs font-bold uppercase"
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black text-xs font-bold uppercase"
             >
               Reset Search &amp; Filter
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredItems.map((item) => {
               const currentSize =
                 item.sizes && item.sizes.length > 0
@@ -260,111 +270,127 @@ export function MenuSection() {
               return (
                 <div
                   key={item.id}
-                  className="group rounded-2xl p-5 bg-neutral-900/90 border border-neutral-800 hover:border-brand-orange/50 transition-all duration-200 hover:-translate-y-1 shadow-card flex flex-col justify-between"
+                  className="group rounded-2xl bg-neutral-900/90 border border-neutral-800 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1.5 shadow-card overflow-hidden flex flex-col justify-between"
                 >
                   <div>
-                    {/* Badges Row */}
-                    <div className="flex items-center gap-1.5 mb-2.5 flex-wrap">
-                      {item.popular && (
-                        <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-brand-yellow/15 text-brand-yellow border border-brand-yellow/30 flex items-center gap-1">
-                          <Sparkles className="w-3 h-3" />
-                          Popular
+                    {/* Item Image with Fallback and Next/Image */}
+                    <div className="relative w-full h-48 sm:h-52 bg-neutral-950 overflow-hidden">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                        placeholder="blur"
+                        blurDataURL={SHIMMER_BLUR}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-black/30" />
+
+                      {/* Badges on Top of Image */}
+                      <div className="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
+                        {item.popular && (
+                          <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/80 text-amber-400 border border-amber-500/40 backdrop-blur-md flex items-center gap-1">
+                            <Sparkles className="w-3 h-3 text-amber-400" />
+                            Popular
+                          </span>
+                        )}
+                        {item.spicy && (
+                          <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-950/90 text-red-400 border border-red-500/50 backdrop-blur-md flex items-center gap-1">
+                            <Flame className="w-3 h-3 text-red-500" />
+                            Spicy
+                          </span>
+                        )}
+                        {item.chefSpecial && (
+                          <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-orange-950/90 text-orange-400 border border-orange-500/50 backdrop-blur-md">
+                            Special
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Category Label on Image */}
+                      <div className="absolute top-3 right-3">
+                        <span className="text-[10px] font-bold text-neutral-300 uppercase tracking-wider px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md">
+                          {item.category.replace("-", " ")}
                         </span>
-                      )}
-                      {item.spicy && (
-                        <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-950/80 text-red-400 border border-red-500/30 flex items-center gap-1">
-                          <Flame className="w-3 h-3 text-red-500" />
-                          Spicy
+                      </div>
+
+                      {/* Floating Price on Bottom-Right of Image */}
+                      <div className="absolute bottom-2.5 right-3">
+                        <span className="px-2.5 py-1 rounded-xl bg-black/85 border border-amber-500/30 text-amber-400 font-display font-black text-lg tracking-wider shadow-lg">
+                          Rs {activePrice}
                         </span>
-                      )}
-                      {item.chefSpecial && (
-                        <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-brand-orange/20 text-brand-orange border border-brand-orange/40">
-                          Chef Special
-                        </span>
-                      )}
-                      <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider ml-auto">
-                        {item.category.replace("-", " ")}
-                      </span>
+                      </div>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-brand-yellow transition-colors font-sans mb-1.5">
-                      {item.name}
-                    </h3>
+                    {/* Card Body */}
+                    <div className="p-4 sm:p-5">
+                      <h4 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-400 transition-colors font-sans mb-1.5 leading-snug">
+                        {item.name}
+                      </h4>
 
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed mb-4">
-                      {item.description}
-                    </p>
+                      <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed mb-3 line-clamp-2">
+                        {item.description}
+                      </p>
 
-                    {/* Size Selector for multi-size dishes (Pizza, Pasta, Fries, Water) */}
-                    {item.sizes && item.sizes.length > 0 && (
-                      <div className="mb-3.5 pt-2 border-t border-neutral-800/70">
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
-                            Choose Size
-                          </span>
-                          <span className="text-[11px] font-bold text-brand-yellow">
-                            {currentSize}
-                          </span>
+                      {/* Size Selector if available */}
+                      {item.sizes && item.sizes.length > 0 && (
+                        <div className="mb-3 pt-2 border-t border-neutral-800">
+                          <div className="flex items-center justify-between mb-1.5">
+                            <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+                              Select Size
+                            </span>
+                            <span className="text-[11px] font-bold text-amber-400">
+                              {currentSize}
+                            </span>
+                          </div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {item.sizes.map((s) => {
+                              const isSelected = currentSize === s.name;
+                              return (
+                                <button
+                                  key={s.name}
+                                  type="button"
+                                  onClick={() => handleSelectSize(item.id, s.name)}
+                                  className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                                    isSelected
+                                      ? "bg-amber-500 text-black shadow-sm"
+                                      : "bg-neutral-800/80 text-neutral-300 hover:bg-neutral-700"
+                                  }`}
+                                >
+                                  {s.name} (Rs {s.price})
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
-                        <div className="flex flex-wrap gap-1.5">
-                          {item.sizes.map((s) => {
-                            const isSelected = currentSize === s.name;
-                            return (
-                              <button
-                                key={s.name}
-                                type="button"
-                                onClick={() =>
-                                  handleSelectSize(item.id, s.name)
-                                }
-                                className={`px-2.5 py-1 rounded-lg text-xs font-semibold inline-flex items-center gap-1.5 transition-all duration-150 ${
-                                  isSelected
-                                    ? "bg-brand-orange text-white shadow-sm ring-1 ring-brand-orange"
-                                    : "bg-neutral-800/90 text-neutral-300 hover:bg-neutral-700 hover:text-white border border-neutral-700/60"
-                                }`}
-                              >
-                                <span className="text-[11px] font-bold">{s.name}</span>
-                                <span className={`text-[10px] ${isSelected ? "text-amber-100 font-bold" : "text-brand-yellow"}`}>
-                                  Rs {s.price}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
 
-                  {/* Price & Add to Order Bar */}
-                  <div className="pt-3 border-t border-neutral-800 flex items-center justify-between gap-2 mt-auto">
-                    <div>
-                      <span className="text-[10px] text-neutral-400 block font-semibold uppercase tracking-wider">
-                        {currentSize ? currentSize : "Price"}
-                      </span>
-                      <span className="font-display font-black text-xl sm:text-2xl text-brand-yellow tracking-wide leading-none">
-                        Rs {activePrice.toLocaleString()}
-                      </span>
-                    </div>
+                  {/* Card Actions Bottom */}
+                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1 border-t border-neutral-800/60 flex items-center justify-between gap-2">
+                    <span className="text-xs text-neutral-400 font-medium">
+                      Fresh &amp; Hot
+                    </span>
 
                     <button
+                      type="button"
                       onClick={() => handleAddToCart(item)}
-                      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 min-h-[40px] ${
+                      className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 active:scale-95 ${
                         isJustAdded
-                          ? "bg-emerald-600 text-white"
-                          : "bg-neutral-800 hover:bg-brand-orange text-white hover:shadow-fiery active:scale-95 border border-neutral-700 hover:border-transparent"
+                          ? "bg-emerald-500 text-black shadow-[0_0_15px_rgba(16,185,129,0.5)]"
+                          : "bg-gradient-to-r from-amber-500 to-orange-500 text-black hover:brightness-110 shadow-md"
                       }`}
-                      aria-label={`Add ${item.name} to order`}
                     >
                       {isJustAdded ? (
                         <>
                           <Check className="w-3.5 h-3.5" />
-                          <span>Added</span>
+                          <span>Added!</span>
                         </>
                       ) : (
                         <>
-                          <Plus className="w-3.5 h-3.5 text-brand-yellow group-hover:text-white" />
-                          <span>Add to Order</span>
+                          <Plus className="w-3.5 h-3.5" />
+                          <span>Add to Cart</span>
                         </>
                       )}
                     </button>

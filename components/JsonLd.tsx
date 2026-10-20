@@ -4,28 +4,31 @@ import { RESTAURANT_INFO } from "@/lib/restaurant-info";
 export function RestaurantJsonLd() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
+    "@type": "FastFoodRestaurant",
     name: RESTAURANT_INFO.name,
+    legalName: RESTAURANT_INFO.legalName,
     description:
-      "Kasur's premier late-night fast-food and charcoal grill restaurant. Famous for juicy chicken shawarma, loaded zinger burgers, cheese crust pizza, and platters. Open till 2:00 AM.",
+      "Easy Cheesy Kasur - Serving Moments, Not Just Meals. Famous for double beef smash burgers, cheesy crown crust pizza, flavor-injected broast, club sandwiches, and Chinese cuisine. Kids Play Zone upstairs. Open till 2:00 AM.",
     image: [
-      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=85",
+      "/images/easy-cheesy/burger-smash-cut.png",
+      "/images/easy-cheesy/building-exterior-night.png",
+      "/images/easy-cheesy/pizza-slice-loaded.png",
     ],
     telephone: RESTAURANT_INFO.phonePrimaryRaw,
-    url: "https://shawarmaline.pk",
-    priceRange: "PKR 150 - 2600",
+    url: "https://easycheesy.pk",
+    priceRange: "PKR 250 - 4600",
     servesCuisine: [
       "Fast Food",
-      "Shawarma",
-      "Burgers",
-      "Pizza",
-      "Charcoal Grill",
-      "Pakistani Fast Food",
+      "Smash Burgers",
+      "Artisan Pizza",
+      "Injected Broast",
+      "Club Sandwiches",
+      "Chinese Cuisine",
+      "Mocktails & Shakes",
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Govt. Islamia College Boys Campus, College Road",
+      streetAddress: "Plot #8 Near Elite College, Shahbaz Khan Road, Ali Ahmad Shah Colony",
       addressLocality: "Kasur",
       addressRegion: "Punjab",
       postalCode: "55050",
@@ -33,8 +36,8 @@ export function RestaurantJsonLd() {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 31.1165,
-      longitude: 74.4379,
+      latitude: 31.1192,
+      longitude: 74.4429,
     },
     openingHoursSpecification: [
       {
@@ -48,18 +51,16 @@ export function RestaurantJsonLd() {
           "Saturday",
           "Sunday",
         ],
-        opens: "13:00",
+        opens: "12:00",
         closes: "02:00",
       },
     ],
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.5",
+      ratingValue: "4.1",
       bestRating: "5",
-      reviewCount: "480",
+      reviewCount: "269",
     },
-    hasMenu: "https://shawarmaline.pk#menu",
-    paymentAccepted: "Cash",
   };
 
   return (

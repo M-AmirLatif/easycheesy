@@ -42,7 +42,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Initialize from sessionStorage if exists
   useEffect(() => {
     try {
-      const saved = sessionStorage.getItem("shawarma_line_cart");
+      const saved = sessionStorage.getItem("easy_cheesy_cart");
       if (saved) {
         setItems(JSON.parse(saved));
       }
@@ -54,7 +54,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Save to sessionStorage
   useEffect(() => {
     try {
-      sessionStorage.setItem("shawarma_line_cart", JSON.stringify(items));
+      sessionStorage.setItem("easy_cheesy_cart", JSON.stringify(items));
     } catch {
       // ignore
     }
@@ -120,7 +120,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const generateWhatsAppOrderMessage = () => {
     if (items.length === 0) {
-      return "Salam Shawarma Line! I would like to place an order.";
+      return "Salam Easy Cheesy! I would like to place an order.";
     }
 
     const itemLines = items
@@ -133,7 +133,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       .join("\n");
 
     return (
-      `🔥 *NEW ORDER - SHAWARMA LINE KASUR* 🔥\n\n` +
+      `🧀 *NEW ORDER - EASY CHEESY KASUR* 🧀\n\n` +
       `Assalam-o-Alaikum! I'd like to place an order:\n\n` +
       `${itemLines}\n\n` +
       `💰 *Total Amount: Rs ${totalAmount.toLocaleString()}*\n` +

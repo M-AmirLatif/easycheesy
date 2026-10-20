@@ -22,10 +22,10 @@ export function BrandLogo({
   };
 
   const badgeDimensions = {
-    sm: { width: 68, height: 80, className: "w-[68px] h-auto" },
-    md: { width: 92, height: 110, className: "w-[92px] h-auto" },
-    lg: { width: 120, height: 142, className: "w-[120px] h-auto" },
-    xl: { width: 160, height: 190, className: "w-[160px] h-auto" },
+    sm: { width: 68, height: 68, className: "w-[68px] h-[68px]" },
+    md: { width: 88, height: 88, className: "w-[88px] h-[88px]" },
+    lg: { width: 110, height: 110, className: "w-[110px] h-[110px]" },
+    xl: { width: 140, height: 140, className: "w-[140px] h-[140px]" },
   };
 
   const titleSizes = {
@@ -42,16 +42,16 @@ export function BrandLogo({
     xl: "text-sm",
   };
 
-  // Full Badge Variant (The authentic printed menu emblem)
+  // Badge Variant
   if (variant === "badge") {
     return (
       <div
         className={`relative inline-flex flex-col items-center group transition-transform duration-300 hover:scale-[1.03] select-none ${className}`}
       >
-        <div className="relative rounded-2xl overflow-hidden p-1 bg-gradient-to-b from-brand-yellow/80 via-brand-orange to-red-600 shadow-[0_8px_25px_rgba(249,115,22,0.35)]">
+        <div className="relative rounded-2xl overflow-hidden p-1 bg-gradient-to-b from-amber-400 via-orange-500 to-amber-600 shadow-[0_8px_25px_rgba(245,158,11,0.35)]">
           <Image
-            src="/images/shawarma-line-badge.png"
-            alt="Shawarma Line Official Logo - All Taste Behind Me"
+            src="/images/easy-cheesy-badge.svg"
+            alt="Easy Cheesy Kasur Official Logo"
             width={badgeDimensions[size].width}
             height={badgeDimensions[size].height}
             priority
@@ -62,16 +62,16 @@ export function BrandLogo({
     );
   }
 
-  // Icon Only Variant (Authentic circular chef medallion)
+  // Icon Only Variant
   if (variant === "icon") {
     return (
       <div
         className={`relative inline-flex items-center justify-center select-none ${iconDimensions[size].className} ${className}`}
       >
-        <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_0_15px_rgba(249,115,22,0.5)] border-2 border-brand-orange/80 transition-transform duration-300 hover:scale-105">
+        <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_0_15px_rgba(245,158,11,0.5)] border-2 border-amber-500/80 transition-transform duration-300 hover:scale-105">
           <Image
-            src="/images/shawarma-line-avatar.png"
-            alt="Shawarma Line Chef Mascot"
+            src="/images/easy-cheesy-badge.svg"
+            alt="Easy Cheesy Icon"
             fill
             sizes="72px"
             priority
@@ -82,70 +82,53 @@ export function BrandLogo({
     );
   }
 
-  // Default: Horizontal Lockup (Authentic Mascot Medallion + Wordmark + Tagline)
+  // Default: Horizontal Lockup
   return (
     <div className={`flex items-center gap-3 select-none group ${className}`}>
-      {/* Authentic Chef Mascot Medallion */}
+      {/* Medallion */}
       <div className={`relative ${iconDimensions[size].className} flex-shrink-0`}>
-        <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_0_15px_rgba(249,115,22,0.5)] border-2 border-brand-orange/80 transition-transform duration-300 group-hover:scale-105">
+        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(245,158,11,0.4)] border border-amber-500/60 transition-transform duration-300 group-hover:scale-105 bg-neutral-900 flex items-center justify-center">
           <Image
-            src="/images/shawarma-line-avatar.png"
-            alt="Shawarma Line Chef Mascot"
+            src="/images/easy-cheesy-badge.svg"
+            alt="Easy Cheesy Logo"
             fill
             sizes="72px"
             priority
-            className="object-cover"
+            className="object-contain p-0.5"
           />
         </div>
       </div>
 
-      {/* Wordmark typography */}
-      <div className="flex flex-col">
-        <div className="flex items-baseline tracking-wide">
+      {/* Typography */}
+      <div className="flex flex-col justify-center leading-none">
+        <div className="flex items-center gap-1.5">
           <span
-            className={`font-display font-black uppercase text-brand-offwhite tracking-wider leading-none drop-shadow-sm ${titleSizes[size]}`}
+            className={`font-display font-black tracking-wider uppercase text-amber-400 group-hover:text-amber-300 transition-colors drop-shadow-sm ${titleSizes[size]}`}
           >
-            SHAWARMA
+            EASY
           </span>
           <span
-            className={`font-display font-black uppercase text-brand-yellow ml-1.5 leading-none drop-shadow-[0_2px_10px_rgba(255,194,14,0.3)] ${titleSizes[size]}`}
+            className={`font-display font-black tracking-wider uppercase text-orange-500 group-hover:text-orange-400 transition-colors drop-shadow-sm ${titleSizes[size]}`}
           >
-            LINE
+            CHEESY
           </span>
         </div>
         {showTagline && (
-          <span
-            className={`font-script text-brand-orange font-normal tracking-wide leading-tight mt-0.5 ${tagSizes[size]}`}
-          >
-            All Taste Behind Me
-          </span>
+          <div className="flex items-center gap-1 mt-1">
+            <span
+              className={`font-bold uppercase tracking-widest text-amber-300/90 font-sans ${tagSizes[size]}`}
+            >
+              Love at First Bite
+            </span>
+            <span className="text-neutral-500 text-[10px]">•</span>
+            <span
+              className={`font-semibold uppercase tracking-wider text-neutral-400 font-sans ${tagSizes[size]}`}
+            >
+              Kasur
+            </span>
+          </div>
         )}
       </div>
     </div>
-  );
-}
-
-export function BrandFaviconSvg() {
-  return (
-    <svg
-      viewBox="0 0 100 100"
-      className="w-full h-full"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="favFlame" x1="0%" y1="100%" x2="0%" y2="0%">
-          <stop offset="0%" stopColor="#DC2626" />
-          <stop offset="50%" stopColor="#F97316" />
-          <stop offset="100%" stopColor="#FFC20E" />
-        </linearGradient>
-      </defs>
-      <rect width="100" height="100" rx="24" fill="#0E0E0E" />
-      <path
-        d="M50 12 C40 30, 24 42, 24 64 C24 80, 36 90, 50 92 C64 90, 76 80, 76 64 C76 44, 66 32, 50 12 Z"
-        fill="url(#favFlame)"
-      />
-      <circle cx="50" cy="66" r="10" fill="#FFF" opacity="0.9" />
-    </svg>
   );
 }

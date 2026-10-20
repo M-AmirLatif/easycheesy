@@ -71,7 +71,7 @@ export function CartDrawer() {
               </div>
               <div>
                 <h2 className="text-base font-bold text-white uppercase tracking-wider font-display">
-                  Your Sizzle Order
+                  Your Easy Cheesy Order
                 </h2>
                 <p className="text-xs text-neutral-400">
                   {totalItems} {totalItems === 1 ? "item" : "items"} selected
@@ -99,11 +99,11 @@ export function CartDrawer() {
                   Your cart is empty
                 </h3>
                 <p className="text-xs text-neutral-400 max-w-xs mb-6">
-                  Add juicy shawarmas, crispy zingers, or special pizzas to build your feast.
+                  Add smash burgers, crown pizzas, injected broast, or club sandwiches to build your feast.
                 </p>
                 <button
                   onClick={() => setIsCartOpen(false)}
-                  className="px-5 py-2.5 rounded-xl bg-brand-orange hover:bg-brand-orangeDark text-white font-bold text-xs uppercase tracking-wider transition-colors min-h-[44px]"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-xs uppercase tracking-wider transition-colors min-h-[44px]"
                 >
                   Browse Menu
                 </button>
