@@ -54,18 +54,18 @@ export function GallerySection() {
   };
 
   return (
-    <section id="gallery" className="py-20 sm:py-28 bg-[#0E0E0E] relative overflow-hidden">
+    <section id="gallery" className="py-14 sm:py-24 bg-[#0E0E0E] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2.5">
             <Camera className="w-3.5 h-3.5 text-orange-400" />
             <span>Real Restaurant &amp; Food Photos</span>
           </div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
+          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-2 sm:mb-3">
             Life at <span className="text-amber-400">Easy Cheesy</span>
           </h2>
-          <p className="text-sm sm:text-base text-neutral-300 font-sans">
+          <p className="text-xs sm:text-base text-neutral-300 font-sans leading-relaxed">
             A real glimpse into our vibrant 2-floor dining hall on Shahbaz Khan Road,
             the upper Kids Zone, and our freshly plated burgers, crown pizzas, and broast.
           </p>

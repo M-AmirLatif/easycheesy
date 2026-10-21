@@ -94,18 +94,18 @@ export function ReviewsSection() {
   const current = reviews[currentIndex];
 
   return (
-    <section id="reviews" className="py-20 sm:py-28 bg-[#121214] relative overflow-hidden">
+    <section id="reviews" className="py-14 sm:py-24 bg-[#121214] relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2.5">
             <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
             <span>{RESTAURANT_INFO.rating} ★ Google Rating ({RESTAURANT_INFO.reviewCount} Reviews)</span>
           </div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
+          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-2 sm:mb-3">
             What Kasur Says <span className="text-amber-400">About Us</span>
           </h2>
-          <p className="text-sm sm:text-base text-neutral-300 font-sans">
+          <p className="text-xs sm:text-base text-neutral-300 font-sans leading-relaxed">
             Real, uncensored reviews from foodies and families dining at Easy Cheesy Kasur.
           </p>
         </div>
@@ -114,7 +114,7 @@ export function ReviewsSection() {
         <div
           onMouseEnter={() => setIsAutoPlay(false)}
           onMouseLeave={() => setIsAutoPlay(true)}
-          className="relative rounded-3xl p-6 sm:p-12 bg-neutral-900 border border-neutral-800 shadow-2xl overflow-hidden"
+          className="relative rounded-3xl p-5 sm:p-12 bg-neutral-900 border border-neutral-800 shadow-2xl overflow-hidden"
         >
           {/* Large decorative quotation mark background */}
           <Quote className="absolute -bottom-6 -right-6 w-44 h-44 text-neutral-800/20 pointer-events-none" />

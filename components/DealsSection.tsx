@@ -40,22 +40,22 @@ export function DealsSection() {
   };
 
   return (
-    <section id="deals" className="py-20 sm:py-28 bg-[#101012] relative overflow-hidden">
+    <section id="deals" className="py-14 sm:py-24 bg-[#101012] relative overflow-hidden">
       {/* Background radial glow */}
       <div className="absolute top-1/3 -right-24 w-96 h-96 bg-amber-500/10 blur-[140px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/3 -left-24 w-96 h-96 bg-orange-600/10 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-black uppercase tracking-wider mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[10px] sm:text-xs font-black uppercase tracking-wider mb-2.5">
             <Tag className="w-3.5 h-3.5 text-orange-400" />
             <span>Official Value Combos</span>
           </div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
+          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-2 sm:mb-3">
             Mega Combo <span className="text-amber-400">Deals</span>
           </h2>
-          <p className="text-sm sm:text-base text-neutral-300 font-sans">
+          <p className="text-xs sm:text-base text-neutral-300 font-sans leading-relaxed">
             Special combos crafted for friends, family feasts, and lunch/dinner cravings.
             Formatted professionally into cards with instant WhatsApp &amp; cart ordering.
           </p>

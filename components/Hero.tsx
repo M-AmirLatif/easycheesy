@@ -9,7 +9,6 @@ import {
   MessageCircle,
   UtensilsCrossed,
   Star,
-  Flame,
   Clock,
   Sparkles,
   MapPin,
@@ -34,7 +33,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-[#0C0C0E] pt-16 pb-20 sm:py-24"
+      className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-[#0C0C0E] pt-8 sm:pt-16 pb-16 sm:py-24"
     >
       {/* Background Hero Image with Dark Vignette Gradient */}
       <div className="absolute inset-0 z-0">
@@ -93,29 +92,22 @@ export function Hero() {
 
       {/* Main Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center w-full">
-        {/* Top Badges Row */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6 max-w-full">
-          {/* Google 4.1 Rating Badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-amber-500/40 shadow-sm">
+        {/* Sleek Unified Status Pill */}
+        <div className="inline-flex items-center gap-2 sm:gap-3 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-amber-500/35 text-[11px] sm:text-xs mb-4 sm:mb-6 shadow-md max-w-full">
+          <div className="flex items-center gap-1 text-amber-400 font-black">
             <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-            <span className="text-xs font-black text-white tracking-wide">
-              {RESTAURANT_INFO.rating}
-            </span>
-            <span className="text-[11px] text-neutral-400">
-              ({RESTAURANT_INFO.reviewCount} Google Reviews)
-            </span>
+            <span>{RESTAURANT_INFO.rating}</span>
+            <span className="text-neutral-400 font-normal">({RESTAURANT_INFO.reviewCount})</span>
           </div>
-
-          {/* Location Badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-900/90 border border-neutral-700/80 text-neutral-300 text-xs font-bold">
-            <MapPin className="w-3.5 h-3.5 text-amber-400" />
-            <span>Shahbaz Khan Road, Kasur</span>
+          <span className="text-neutral-600 font-bold">•</span>
+          <div className="flex items-center gap-1 text-neutral-300 font-medium truncate">
+            <MapPin className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+            <span className="truncate">Shahbaz Khan Rd</span>
           </div>
-
-          {/* Hours Badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 text-xs font-bold">
+          <span className="text-neutral-600 font-bold">•</span>
+          <div className="flex items-center gap-1.5 text-emerald-400 font-semibold flex-shrink-0">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Closes 2:00 AM</span>
+            <span>Till 2 AM</span>
           </div>
         </div>
 
@@ -125,13 +117,13 @@ export function Hero() {
         </h1>
 
         {/* Brand Taglines */}
-        <p className="text-sm sm:text-base md:text-lg font-semibold text-amber-300/90 tracking-widest uppercase mb-4">
+        <p className="text-xs sm:text-base md:text-lg font-semibold text-amber-300/90 tracking-widest uppercase mb-3 sm:mb-4">
           &ldquo;{RESTAURANT_INFO.tagline}&rdquo; &bull; {RESTAURANT_INFO.subTagline}
         </p>
 
         {/* Dynamic Typing Subtitle */}
-        <div className="h-10 sm:h-12 flex items-center justify-center mb-6 sm:mb-8">
-          <p className="text-lg sm:text-2xl md:text-3xl font-bold text-neutral-200 font-sans">
+        <div className="h-9 sm:h-12 flex items-center justify-center mb-5 sm:mb-8">
+          <p className="text-base sm:text-2xl md:text-3xl font-bold text-neutral-200 font-sans">
             Kasur&apos;s Home For{" "}
             <span className="text-amber-400 font-extrabold border-b-2 border-amber-400/60 pb-0.5">
               {text}
@@ -141,7 +133,7 @@ export function Hero() {
         </div>
 
         {/* Restaurant Description */}
-        <p className="max-w-2xl text-sm sm:text-base text-neutral-300 font-sans leading-relaxed mb-8 sm:mb-10">
+        <p className="max-w-2xl text-xs sm:text-base text-neutral-300 font-sans leading-relaxed mb-6 sm:mb-10 px-2 sm:px-0">
           Savor double smashed beef patties, cheesy crown-crust pizzas, flavor-injected crispy broast,
           and authentic club sandwiches. Enjoy in our vibrant 2-floor family hall with a kids play zone,
           or get piping hot delivery till 2 AM!
@@ -152,7 +144,7 @@ export function Hero() {
           {/* Menu Button */}
           <a
             href="#menu"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-black font-black uppercase tracking-wider text-sm shadow-[0_0_25px_rgba(245,158,11,0.4)] hover:shadow-[0_0_35px_rgba(245,158,11,0.6)] hover:brightness-110 transition-all duration-200 active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-black font-black uppercase tracking-wider text-xs sm:text-sm shadow-[0_0_25px_rgba(245,158,11,0.4)] hover:shadow-[0_0_35px_rgba(245,158,11,0.6)] hover:brightness-110 transition-all duration-200 active:scale-95"
           >
             <UtensilsCrossed className="w-4 h-4" />
             <span>Explore Full Menu</span>
@@ -165,7 +157,7 @@ export function Hero() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-neutral-900/90 border border-neutral-700 hover:border-emerald-500 text-white hover:text-emerald-400 text-sm font-bold uppercase tracking-wider transition-all duration-200 shadow-md active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-neutral-900/90 border border-neutral-700 hover:border-emerald-500 text-white hover:text-emerald-400 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 shadow-md active:scale-95"
           >
             <MessageCircle className="w-4 h-4 text-emerald-400" />
             <span>Order on WhatsApp</span>
@@ -173,7 +165,7 @@ export function Hero() {
         </div>
 
         {/* Delivery / Takeaway Info Micro-Pill */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs text-neutral-400">
+        <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] sm:text-xs text-neutral-400">
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
             Dine-In &bull; Takeout &bull; Delivery

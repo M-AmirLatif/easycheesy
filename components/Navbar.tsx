@@ -31,7 +31,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll and listen for Escape when mobile drawer is open so underlying page never scrolls
+  // Lock body scroll and listen for Escape when mobile drawer is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -60,18 +60,18 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-colors duration-200 ${
+      className={`sticky top-0 z-50 w-full transition-all duration-200 ${
         isScrolled || mobileMenuOpen
-          ? "bg-[#0E0E0E] border-b border-neutral-800 shadow-xl"
-          : "bg-[#0E0E0E] sm:bg-gradient-to-b sm:from-black/95 sm:via-[#0E0E0E]/90 sm:to-[#0E0E0E]/80 border-b border-neutral-800/80 sm:border-white/5"
+          ? "bg-[#0C0C0E]/95 backdrop-blur-md border-b border-neutral-800 shadow-xl"
+          : "bg-[#0C0C0E] sm:bg-gradient-to-b sm:from-black/95 sm:via-[#0C0C0E]/90 sm:to-[#0C0C0E]/80 border-b border-neutral-800/80"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Brand Logo */}
           <Link
             href="#hero"
-            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-xl p-1"
+            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-xl py-1 flex-shrink-0"
             aria-label="Easy Cheesy Homepage"
           >
             <BrandLogo size="md" />
@@ -83,7 +83,7 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs xl:text-sm font-bold text-neutral-300 hover:text-brand-yellow transition-colors duration-200 tracking-wider uppercase whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded px-1.5 py-1"
+                className="text-xs xl:text-sm font-bold text-neutral-300 hover:text-amber-400 transition-colors duration-200 tracking-wider uppercase whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded px-1.5 py-1"
               >
                 {link.name}
               </a>
@@ -91,8 +91,8 @@ export function Navbar() {
           </nav>
 
           {/* Right Action Icons & Badges */}
-          <div className="flex items-center gap-2.5 sm:gap-3 flex-shrink-0">
-            {/* Live Store Status Indicator */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            {/* Live Store Status Indicator (Desktop only) */}
             <div
               className={`hidden 2xl:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border whitespace-nowrap ${
                 isOpen
@@ -118,15 +118,15 @@ export function Navbar() {
             {/* Cart Trigger Button */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2.5 sm:px-4 sm:py-2 rounded-xl bg-neutral-900 border border-neutral-700 hover:border-brand-orange/60 text-neutral-200 hover:text-brand-yellow transition-all duration-200 flex items-center gap-2 min-h-[44px] min-w-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange"
+              className="relative w-10 h-10 sm:w-auto sm:h-auto sm:px-3.5 sm:py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-amber-500/60 text-neutral-200 hover:text-amber-400 transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
               aria-label={`Open Cart (${totalItems} items)`}
             >
-              <ShoppingBag className="w-5 h-5 text-brand-orange" />
+              <ShoppingBag className="w-5 h-5 text-amber-400" />
               <span className="hidden sm:inline text-xs font-bold uppercase tracking-wider">
                 Cart
               </span>
               {totalItems > 0 && (
-                <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-black bg-brand-orange text-white rounded-full min-w-[20px] shadow-[0_0_10px_rgba(249,115,22,0.6)]">
+                <span className="absolute -top-1 -right-1 sm:static sm:top-auto sm:right-auto inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] sm:text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-full min-w-[18px] sm:min-w-[20px] shadow-sm leading-none">
                   {totalItems}
                 </span>
               )}
@@ -137,7 +137,7 @@ export function Navbar() {
               href={`https://wa.me/${RESTAURANT_INFO.whatsAppNumber}?text=Salam%20Easy%20Cheesy!%20I%20would%20like%20to%20view%20the%20menu%20and%20order.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-emerald-950/40 min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-emerald-950/40 min-h-[40px] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp</span>
@@ -146,11 +146,11 @@ export function Navbar() {
             {/* Mobile Hamburger Drawer Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-200 hover:text-white min-h-[44px] min-w-[44px] flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+              className="lg:hidden w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-200 hover:text-white flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
               aria-label={mobileMenuOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -158,7 +158,7 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-[#0C0C0E] z-50 overflow-y-auto border-t border-neutral-800 shadow-2xl animate-in fade-in duration-150">
+        <div className="lg:hidden fixed inset-x-0 top-16 bottom-0 bg-[#0C0C0E] z-50 overflow-y-auto border-t border-neutral-800 shadow-2xl animate-in fade-in duration-150">
           <div className="max-w-md mx-auto px-5 py-5 flex flex-col gap-3 min-h-full pb-32">
             {/* Live Open Pill on Mobile Drawer */}
             <div className="flex items-center justify-between pb-3 border-b border-neutral-800">

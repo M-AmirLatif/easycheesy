@@ -18,30 +18,30 @@ import {
 
 export function VisitUsSection() {
   return (
-    <section id="visit" className="py-20 sm:py-28 bg-[#0F0F11] relative overflow-hidden">
+    <section id="visit" className="py-14 sm:py-24 bg-[#0F0F11] relative overflow-hidden">
       {/* Decorative warm glow */}
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/10 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2.5">
             <MapPin className="w-3.5 h-3.5 text-orange-400" />
             <span>Find Easy Cheesy</span>
           </div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
+          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-2 sm:mb-3">
             Visit Us in <span className="text-amber-400">Kasur</span>
           </h2>
-          <p className="text-sm sm:text-base text-neutral-300 font-sans">
+          <p className="text-xs sm:text-base text-neutral-300 font-sans leading-relaxed">
             Located conveniently on Shahbaz Khan Road near Elite College.
             Featuring a 2-storey family hall with an upstairs kids play area.
           </p>
         </div>
 
         {/* 2-Column Info + Google Map Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
           {/* Left Column: Details & Contact CTAs (5 cols) */}
-          <div className="lg:col-span-5 rounded-3xl p-6 sm:p-8 bg-neutral-900 border border-neutral-800 shadow-xl flex flex-col justify-between">
+          <div className="lg:col-span-5 rounded-3xl p-5 sm:p-8 bg-neutral-900 border border-neutral-800 shadow-xl flex flex-col justify-between">
             <div>
               {/* Brand Header */}
               <div className="flex items-center gap-4 pb-6 mb-6 border-b border-neutral-800/80">

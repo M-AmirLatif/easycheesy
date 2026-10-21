@@ -83,51 +83,78 @@ export function WhyUs() {
     },
   ];
 
+  const stats = [
+    {
+      value: `${counts.rating} ★`,
+      label: "Google Maps Rating",
+      sub: "269+ real customer reviews",
+      color: "text-amber-400",
+    },
+    {
+      value: `${counts.items}+`,
+      label: "Menu Varieties",
+      sub: "Burgers, pizzas, broast & Chinese",
+      color: "text-orange-400",
+    },
+    {
+      value: `${counts.closeTime}:00 AM`,
+      label: "Midnight Hub",
+      sub: "Open every single day",
+      color: "text-amber-400",
+    },
+    {
+      value: `${counts.quality}%`,
+      label: "Fresh Ingredients",
+      sub: "100% Halal & clean kitchen",
+      color: "text-emerald-400",
+    },
+  ];
+
   return (
-    <section id="why-us" className="py-20 sm:py-28 bg-[#101012] relative overflow-hidden">
+    <section id="why-us" className="py-14 sm:py-24 bg-[#101012] relative overflow-hidden">
       {/* Background radial highlights */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-amber-500/10 blur-[130px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-orange-600/10 blur-[130px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-400 text-xs font-black uppercase tracking-wider mb-3">
             <Award className="w-3.5 h-3.5 text-orange-400" />
             <span>Kasur&apos;s Premium Fast Food</span>
           </div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-3">
+          <h2 className="font-display font-black text-3xl sm:text-5xl uppercase tracking-tight text-white mb-2 sm:mb-3">
             Why Choose <span className="text-amber-400">Easy Cheesy</span>?
           </h2>
-          <p className="text-sm sm:text-base text-neutral-300 font-sans">
+          <p className="text-xs sm:text-base text-neutral-300 font-sans leading-relaxed">
             &ldquo;Serving Moments, Not Just Meals.&rdquo; Discover why families and food lovers
             across Kasur choose us for their favorite burgers, pizzas, and celebrations.
           </p>
         </div>
 
         {/* 4 Feature Highlights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-16">
           {features.map((feat, index) => {
             const Icon = feat.icon;
             return (
               <div
                 key={index}
-                className={`relative rounded-2xl p-6 bg-neutral-900/90 border ${feat.borderColor} hover:border-amber-400/80 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between shadow-card group overflow-hidden`}
+                className={`relative rounded-2xl p-5 sm:p-6 bg-neutral-900/90 border ${feat.borderColor} hover:border-amber-400/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between shadow-card group overflow-hidden`}
               >
                 <div
                   className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${feat.glowColor} rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500`}
                 />
 
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-neutral-800/80 border border-neutral-700/60 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-6 h-6 text-amber-400" />
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-800/80 border border-neutral-700/60 flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400" />
                   </div>
 
                   <span className="text-[10px] font-black uppercase tracking-wider text-orange-400 block mb-1">
                     {feat.badge}
                   </span>
 
-                  <h3 className="font-display font-black text-xl uppercase tracking-wide text-white mb-2 leading-snug">
+                  <h3 className="font-display font-black text-lg sm:text-xl uppercase tracking-wide text-white mb-1.5 sm:mb-2 leading-snug">
                     {feat.title}
                   </h3>
 
@@ -136,7 +163,7 @@ export function WhyUs() {
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-neutral-800/80 flex items-center gap-1.5 text-neutral-500 group-hover:text-amber-400 transition-colors text-xs font-semibold">
+                <div className="mt-4 sm:mt-5 pt-3 border-t border-neutral-800/80 flex items-center gap-1.5 text-neutral-500 group-hover:text-amber-400 transition-colors text-xs font-semibold">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>Quality Guaranteed</span>
                 </div>
@@ -145,47 +172,24 @@ export function WhyUs() {
           })}
         </div>
 
-        {/* Live Honest Stats Bar */}
-        <div className="rounded-3xl p-6 sm:p-8 bg-neutral-900 border border-neutral-800 shadow-2xl grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div className="p-3">
-            <div className="font-display font-black text-3xl sm:text-4xl text-amber-400 mb-1">
-              {counts.rating} ★
+        {/* Live Honest Stats Bar (Clean Individual Tiles - No broken vertical border lines) */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          {stats.map((stat, i) => (
+            <div
+              key={i}
+              className="rounded-2xl p-4 sm:p-6 bg-neutral-900/90 border border-neutral-800 hover:border-amber-500/40 transition-all duration-200 text-center shadow-md flex flex-col items-center justify-center"
+            >
+              <div className={`font-display font-black text-2xl sm:text-4xl ${stat.color} mb-1 tracking-tight`}>
+                {stat.value}
+              </div>
+              <p className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-neutral-200 leading-tight">
+                {stat.label}
+              </p>
+              <p className="text-[10px] sm:text-[11px] text-neutral-400 mt-1 leading-snug">
+                {stat.sub}
+              </p>
             </div>
-            <p className="text-xs font-bold uppercase tracking-wider text-neutral-300">
-              Google Maps Rating
-            </p>
-            <p className="text-[11px] text-neutral-400 mt-0.5">269+ real customer reviews</p>
-          </div>
-
-          <div className="p-3 border-l border-neutral-800/80">
-            <div className="font-display font-black text-3xl sm:text-4xl text-orange-400 mb-1">
-              {counts.items}+
-            </div>
-            <p className="text-xs font-bold uppercase tracking-wider text-neutral-300">
-              Menu Varieties
-            </p>
-            <p className="text-[11px] text-neutral-400 mt-0.5">Burgers, pizzas, broast &amp; Chinese</p>
-          </div>
-
-          <div className="p-3 border-l border-neutral-800/80">
-            <div className="font-display font-black text-3xl sm:text-4xl text-amber-400 mb-1">
-              {counts.closeTime}:00 AM
-            </div>
-            <p className="text-xs font-bold uppercase tracking-wider text-neutral-300">
-              Midnight Hub
-            </p>
-            <p className="text-[11px] text-neutral-400 mt-0.5">Open every single day</p>
-          </div>
-
-          <div className="p-3 border-l border-neutral-800/80">
-            <div className="font-display font-black text-3xl sm:text-4xl text-emerald-400 mb-1">
-              {counts.quality}%
-            </div>
-            <p className="text-xs font-bold uppercase tracking-wider text-neutral-300">
-              Fresh Ingredients
-            </p>
-            <p className="text-[11px] text-neutral-400 mt-0.5">100% Halal &amp; clean kitchen</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
