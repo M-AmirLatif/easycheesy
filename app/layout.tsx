@@ -30,8 +30,11 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://easycheesy-wine.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://easycheesy.pk"),
+  metadataBase: new URL(SITE_URL),
   title: "Easy Cheesy Kasur | Smash Burgers, Crown Pizzas & Broast Till 2 AM",
   description:
     "Serving Moments, Not Just Meals. Kasur's favorite ultimate double beef smash burgers, cheesy crown pizzas, crispy injected broast, club sandwiches, and Chinese cuisine. 2-Floor family dining with Kids Play Zone on Shahbaz Khan Road. Open daily till 2:00 AM.",
@@ -52,14 +55,16 @@ export const metadata: Metadata = {
     title: "Easy Cheesy Kasur | Ultimate Smash Burgers & Crown Pizzas",
     description:
       "Serving Moments, Not Just Meals. Double beef smash burgers, cheesy crown pizzas, injected crispy broast & late-night delivery till 2 AM in Kasur.",
-    url: "https://easycheesy.pk",
-    siteName: "Easy Cheesy",
+    url: SITE_URL,
+    siteName: "Easy Cheesy Kasur",
     images: [
       {
-        url: "/images/easy-cheesy/burger-smash-cut.png",
+        url: "/og-fastfood.jpg",
+        secureUrl: `${SITE_URL}/og-fastfood.jpg`,
         width: 1200,
         height: 630,
         alt: "Easy Cheesy Kasur - Ultimate Beef Smash Burger & Sizzling Fast Food Feast",
+        type: "image/jpeg",
       },
     ],
     locale: "en_PK",
@@ -69,8 +74,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Easy Cheesy Kasur | Serving Moments, Not Just Meals",
     description:
-      "Kasur's home for juicy double smash burgers, cheesy crown crust pizza, injected broast, and club sandwiches. Open daily till 2 AM.",
-    images: ["/images/easy-cheesy/burger-smash-cut.png"],
+      "Kasur's home for juicy double smash burgers, cheesy crown crust pizza, injected broast, and club sandwiches. Open daily till 2 AM. WhatsApp: 0327-4343999.",
+    images: [`${SITE_URL}/og-fastfood.jpg`],
   },
   icons: {
     icon: [
@@ -92,6 +97,27 @@ export default function RootLayout({
       className={`${jakarta.variable} ${bebas.variable} scroll-smooth`}
     >
       <head>
+        <meta property="og:title" content="Easy Cheesy Kasur | Ultimate Smash Burgers & Crown Pizzas" />
+        <meta
+          property="og:description"
+          content="Serving Moments, Not Just Meals. Kasur's favorite ultimate double beef smash burgers, cheesy crown pizzas, and injected crispy broast. Open daily till 2:00 AM."
+        />
+        <meta property="og:image" content={`${SITE_URL}/og-fastfood.jpg`} />
+        <meta property="og:image:secure_url" content={`${SITE_URL}/og-fastfood.jpg`} />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Easy Cheesy Kasur Fast Food Feast" />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Easy Cheesy Kasur" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Easy Cheesy Kasur | Smash Burgers & Crown Pizzas" />
+        <meta
+          name="twitter:description"
+          content="Serving Moments, Not Just Meals. Open daily till 2:00 AM in Kasur. Order: 0327-4343999"
+        />
+        <meta name="twitter:image" content={`${SITE_URL}/og-fastfood.jpg`} />
         <RestaurantJsonLd />
         <style
           dangerouslySetInnerHTML={{
